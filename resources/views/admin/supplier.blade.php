@@ -15,7 +15,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('supplier') }}" class="nav-link px-0 align-middle">
+                        <a href="{{ route('suppliers.index') }}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi bi-dropbox"></i> <span class="ms-1 d-none d-sm-inline"></span>Supplier
                         </a>
                     </li>
@@ -87,7 +87,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route('storesupplier') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('suppliers.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf <!-- CSRF token -->
 
                                         <div class="form-group">
@@ -186,10 +186,13 @@
                 <div class="row">
                     <div class="col">
                         <div class="table-responsive border p-3 rounded-3">
-                            <table class="table table-bordered table-hover table-striped mb-0 bg-white ">
+                            <table class="table table-bordered table-hover table-striped mb-0 bg-white "
+                            id="tabelsupplier">
                                 <thead>
                                     <tr class="text-center">
+                                        {{-- <th>ID.</th> --}}
                                         <th>No.</th>
+                                        {{-- <th>Alamat</th> --}}
                                         <th>Nama Supplier</th>
                                         <th>Jumlah Kain</th>
                                         <th>HGT</th>
@@ -198,6 +201,7 @@
                                         <th>TC</th>
                                         <th>Biasa</th>
                                         <th>Lebar</th>
+                                        <th>Opsi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -220,6 +224,10 @@
                                             <td class="text-center" style="width: 8%">{{ $supplier->TC }}</td>
                                             <td class="text-center" style="width: 8%">{{ $supplier->Biasa }}</td>
                                             <td class="text-center" style="width: 8%">{{ $supplier->Lebar }}</td>
+                                            <td>
+                                                {{-- action section --}}
+                                                @include('admin.actions.actionsupplier')
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -232,3 +240,44 @@
     </div>
 </div>
 @endsection
+@push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $('#tabelsupplier').DataTable();
+        });
+    </script>
+@endpush
+
+{{-- @push('scripts')
+    <script type="module">
+    $(document).ready(function() {
+        $("#tabelsupplier").DataTable({
+            serverSide: true,
+            processing: true,
+            ajax: "/getSuppliers",
+            columns: [
+                { data: "id", name: "id", },
+                { data: "DT_RowIndex", name: "DT_RowIndex", orderable: false,
+                searchable: false },
+                { data: "nama_supplier", name: "nama_supplier" },
+                { data: "alamat", name: "alamat" },
+                { data: "jumlah_kain", name: "jumlah_kain" },
+                { data: "HGT", name: "HGT" },
+                { data: "INT", name: "INT" },
+                { data: "Febri", name: "Febri" },
+                { data: "TC", name: "TC" },
+                { data: "Biasa", name: "Biasa" },
+                { data: "Lebar", name: "Lebar" },
+                // { data: "actions", name: "actions", orderable: false,
+                // searchable: false },
+            ],
+            order: [[0, "desc"]],
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"],
+            ],
+            });
+        });
+    </script>
+@endpush --}}
+

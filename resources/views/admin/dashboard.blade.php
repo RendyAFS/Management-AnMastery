@@ -15,7 +15,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('supplier') }}" class="nav-link px-0 align-middle">
+                        <a href="{{ route('suppliers.index') }}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi bi-dropbox"></i> <span class="ms-1 d-none d-sm-inline"></span>Supplier
                         </a>
                     </li>

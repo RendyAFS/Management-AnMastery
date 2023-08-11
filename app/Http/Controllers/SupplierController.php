@@ -20,6 +20,26 @@ class SupplierController extends Controller
         ]);
     }
 
+    // public function index()
+    // {
+
+    //     return view('admin.supplier');
+    // }
+
+    // public function getData(Request $request)
+    // {
+    //     $suppliers = Supplier::all();
+    //         if ($request->ajax()) {
+    //             return datatables()->of($suppliers)
+    //             ->addIndexColumn()
+    //             ->addColumn('actions', function($supplier) {
+    //             return view('supplier.actions', compact('supplier'));
+    //         })
+    //         ->toJson();
+    //     }
+    // }
+
+
     /**
      * Show the form for creating a new resource.
      */
@@ -72,7 +92,7 @@ class SupplierController extends Controller
         $supplier->jumlah_kain = $jumlah_kain;
 
         $supplier->save();
-        return redirect()->route('supplier');
+        return redirect()->route('suppliers.index');
 
     }
 
@@ -105,6 +125,14 @@ class SupplierController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // ELOQUENT
+        $supplier = Supplier::find($id);
+
+
+        // Alert::success('Deleted Successfully', 'Supplier Data Deleted.');
+
+        $supplier->delete();
+        return redirect()->route('suppliers.index');
     }
+
 }
