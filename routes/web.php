@@ -9,6 +9,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\OnprosesController;
 use App\Http\Controllers\GajiController;
+use App\Models\Supplier;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -26,13 +27,16 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 // HALAMAN ADMIN
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin');
-    Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier');
     Route::get('/income', [IncomeController::class, 'index'])->name('income');
     Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi');
     Route::get('/onproses', [OnprosesController::class, 'index'])->name('onproses');
     Route::get('/gaji', [GajiController::class, 'index'])->name('gaji');
-    // Route::get('/storesupplier', [SupplierController::class, 'store'])->name('storesupplier');
-    Route::post('/storesupplier', [SupplierController::class, 'store'])->name('storesupplier');
+
+    // SUpplier
+    Route::resource('suppliers', SupplierController::class);
+
+    Route::get('getSuppliers', [SupplierController::class,'getData'])->name('getData');
+
 });
 
 // HALAMAN USER
