@@ -185,17 +185,17 @@
             <div class="container mt-4">
                 <div class="row">
                     <div class="col">
-                        <div class="table-responsive border p-3 rounded-3">
+                        <div class="table-responsive border ps-4 pe-5 pt-3 pb-3 rounded-3">
                             <table class="table table-bordered table-hover table-striped mb-0 bg-white "
                             id="tabelsupplier">
                                 <thead>
                                     <tr class="text-center">
-                                        {{-- <th>ID.</th> --}}
+                                        <th>id</th>
                                         <th>No.</th>
-                                        {{-- <th>Alamat</th> --}}
                                         <th>Nama Supplier</th>
+                                        <th>Alamat</th>
                                         <th>Jumlah Kain</th>
-                                        <th>HGT</th>
+                                        <th >HGT</th>
                                         <th>INT</th>
                                         <th>Febri</th>
                                         <th>TC</th>
@@ -204,33 +204,6 @@
                                         <th>Opsi</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    {{-- melakukan perulangan (looping) untuk setiap elemen dalam$employees, dimana setiap elemen tersebut akan disimpan dalam variabel $employee. --}}
-                                    @foreach ($suppliers as $supplier)
-                                        {{-- Calculate total kain quantity --}}
-                                        @php
-                                            $totalKain = $supplier->HGT + $supplier->INT + $supplier->Febri +
-                                                        $supplier->TC + $supplier->Biasa + $supplier->Lebar;
-                                        @endphp
-
-                                        {{-- Display data for each supplier --}}
-                                        <tr>
-                                            <td class="text-center" style="width: 5%">{{ $supplier->id }}.</td>
-                                            <td>{{ $supplier->nama_supplier }}</td>
-                                            <td class="text-center">{{ $totalKain }}</td>
-                                            <td class="text-center" style="width: 8%">{{ $supplier->HGT }}</td>
-                                            <td class="text-center" style="width: 8%">{{ $supplier->INT }}</td>
-                                            <td class="text-center" style="width: 8%">{{ $supplier->Febri }}</td>
-                                            <td class="text-center" style="width: 8%">{{ $supplier->TC }}</td>
-                                            <td class="text-center" style="width: 8%">{{ $supplier->Biasa }}</td>
-                                            <td class="text-center" style="width: 8%">{{ $supplier->Lebar }}</td>
-                                            <td>
-                                                {{-- action section --}}
-                                                @include('admin.actions.actionsupplier')
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -240,44 +213,37 @@
     </div>
 </div>
 @endsection
+
 @push('scripts')
     <script type="module">
         $(document).ready(function() {
-            $('#tabelsupplier').DataTable();
-        });
-    </script>
-@endpush
-
-{{-- @push('scripts')
-    <script type="module">
-    $(document).ready(function() {
-        $("#tabelsupplier").DataTable({
-            serverSide: true,
-            processing: true,
-            ajax: "/getSuppliers",
-            columns: [
-                { data: "id", name: "id", },
-                { data: "DT_RowIndex", name: "DT_RowIndex", orderable: false,
-                searchable: false },
-                { data: "nama_supplier", name: "nama_supplier" },
-                { data: "alamat", name: "alamat" },
-                { data: "jumlah_kain", name: "jumlah_kain" },
-                { data: "HGT", name: "HGT" },
-                { data: "INT", name: "INT" },
-                { data: "Febri", name: "Febri" },
-                { data: "TC", name: "TC" },
-                { data: "Biasa", name: "Biasa" },
-                { data: "Lebar", name: "Lebar" },
-                // { data: "actions", name: "actions", orderable: false,
-                // searchable: false },
-            ],
-            order: [[0, "desc"]],
-            lengthMenu: [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"],
-            ],
+            $("#tabelsupplier").DataTable({
+                serverSide: true,
+                processing: true,
+                ajax: "getsuppliers",
+                columns: [
+                    { data: "id", name: "id", visible: false},
+                    { data: "DT_RowIndex", name: "DT_RowIndex", orderable: false,
+                    searchable: false, width: "2%" },
+                    { data: "nama_supplier", name: "nama_supplier", },
+                    { data: "alamat", name: "alamat", visible: false},
+                    { data: "jumlah_kain", name: "jumlah_kain", },
+                    { data: "HGT", name: "HGT", width: "2%"},
+                    { data: "INT", name: "INT", width: "2%"},
+                    { data: "Febri", name: "Febri", width: "2%" },
+                    { data: "TC", name: "TC", width: "2%" },
+                    { data: "Biasa", name: "Biasa", width: "2%" },
+                    { data: "Lebar", name: "Lebar", width: "2%" },
+                    { data: "actions", name: "actions", orderable: false,
+                    searchable: false, width: "5%" },
+                ],
+                order: [[0, "desc"]],
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"],
+                ],
             });
         });
     </script>
-@endpush --}}
+@endpush
 

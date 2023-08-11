@@ -34,8 +34,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
 
     // SUpplier
     Route::resource('suppliers', SupplierController::class);
+    Route::get('getsuppliers', [SupplierController::class,'getData'])->name('suppliers.getData');
 
-    Route::get('getSuppliers', [SupplierController::class,'getData'])->name('getData');
+
 
 });
 

@@ -11,33 +11,36 @@ class SupplierController extends Controller
     /**
      * Display a listing of the resource.
      */
+    // public function index()
+    // {
+    //     $suppliers = Supplier::all();
+
+    //     return view('admin.supplier', [
+    //         'suppliers' => $suppliers,
+    //     ]);
+    // }
+
     public function index()
+    {
+
+        // confirmDelete();
+
+         return view('admin.supplier');
+    }
+
+    public function getData(Request $request)
     {
         $suppliers = Supplier::all();
 
-        return view('admin.supplier', [
-            'suppliers' => $suppliers,
-        ]);
+        if ($request->ajax()) {
+            return datatables()->of($suppliers)
+                ->addIndexColumn()
+                ->addColumn('actions', function($supplier) {
+                    return view('admin.actions.actionsupplier', compact('supplier'));
+                })
+                ->toJson();
+        }
     }
-
-    // public function index()
-    // {
-
-    //     return view('admin.supplier');
-    // }
-
-    // public function getData(Request $request)
-    // {
-    //     $suppliers = Supplier::all();
-    //         if ($request->ajax()) {
-    //             return datatables()->of($suppliers)
-    //             ->addIndexColumn()
-    //             ->addColumn('actions', function($supplier) {
-    //             return view('supplier.actions', compact('supplier'));
-    //         })
-    //         ->toJson();
-    //     }
-    // }
 
 
     /**
