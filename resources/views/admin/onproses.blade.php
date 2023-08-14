@@ -8,20 +8,21 @@
                 <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">Main Menu</span>
                 </a>
+                {{-- NAV ITEM --}}
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
                         <a href="{{ route('admin') }}" class="nav-link align-middle px-0">
                             <i class="fs-4 bi bi-house-fill"></i> <span class="ms-1 d-none d-sm-inline"></span>Dashboard
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item">
                         <a href="{{ route('suppliers.index') }}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi bi-dropbox"></i> <span class="ms-1 d-none d-sm-inline"></span>Supplier
                         </a>
                     </li>
-                    <li>
-                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle ">
-                            <i class="fs-4 bi bi-person-fill"></i> <span class="ms-1 d-none d-sm-inline">Karyawan <i class="bi-caret-down-fill align-middle"></i></span>
+                    <li class="nav-item">
+                        <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle " >
+                            <i class="fs-4 bi bi-person-fill"></i> <span class="ms-1 d-none d-sm-inline"></span>Karyawan <i class="bi-caret-down-fill align-middle"></i>
                         </a>
                         <ul class="collapse nav flex-column ms-1 show" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
@@ -39,15 +40,16 @@
                                     <span class="d-none d-sm-inline submenu-toggle"><i class="bi bi-caret-right"></i> </span> Gaji
                                 </a>
                             </li>
+
                         </ul>
                     </li>
 
-
-                    <li>
+                    <li class="nav-item">
                         <a href="{{ route('income') }}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi bi-cash-coin"></i> <span class="ms-1 d-none d-sm-inline"></span>Incomes</a>
                     </li>
                 </ul>
+                {{-- NAV ITEM --}}
                 <hr>
                 <div class="dropdown pb-4">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

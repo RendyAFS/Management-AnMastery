@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class SupplierController extends Controller
 {
@@ -112,7 +113,8 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // $supplier = Supplier::find($id);
+        // return view ('admin.actions.editsupplier', compact('supplier'));
     }
 
     /**
@@ -120,8 +122,36 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_supplier' => 'required|string',
+            'alamat' => 'required|string',
+            'HGT' => 'required|numeric',
+            'INT' => 'required|numeric',
+            'Febri' => 'required|numeric',
+            'TC' => 'required|numeric',
+            'Biasa' => 'required|numeric',
+            'Lebar' => 'required|numeric',
+        ]);
+
+        $supplier = Supplier::findOrFail($id);
+        $supplier->nama_supplier = $request->nama_supplier;
+        $supplier->alamat = $request->alamat;
+        $supplier->HGT = $request->HGT;
+        $supplier->INT = $request->INT;
+        $supplier->Febri = $request->Febri;
+        $supplier->TC = $request->TC;
+        $supplier->Biasa = $request->Biasa;
+        $supplier->Lebar = $request->Lebar;
+
+        // Menghitung total kain berdasarkan penjumlahan bidang-bidang
+        $jumlah_kain = $request->HGT + $request->INT + $request->Febri + $request->TC + $request->Biasa + $request->Lebar;
+        $supplier->jumlah_kain = $jumlah_kain;
+
+        $supplier->save();
+
+        return redirect()->route('suppliers.index')->with('success', 'Data supplier berhasil diperbarui.');
     }
+
 
     /**
      * Remove the specified resource from storage.
