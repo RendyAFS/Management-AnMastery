@@ -13,4 +13,15 @@ class Supplier extends Model
     {
         return $this->hasMany(Fabric::class);
     }
+    protected $fillable = [
+        'nama_supplier',
+        'alamat',
+        'HGT',
+        'INT',
+        'Febri',
+        'TC',
+        'Biasa',
+        'Lebar',
+        // Other fields that you want to be mass assignable
+    ];
 }

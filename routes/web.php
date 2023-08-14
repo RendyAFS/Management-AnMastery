@@ -32,9 +32,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     Route::get('/onproses', [OnprosesController::class, 'index'])->name('onproses');
     Route::get('/gaji', [GajiController::class, 'index'])->name('gaji');
 
-    // SUpplier
+    // Supplier
     Route::resource('suppliers', SupplierController::class);
     Route::get('getsuppliers', [SupplierController::class,'getData'])->name('suppliers.getData');
+
 
 
 
