@@ -6,13 +6,13 @@
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark position-fixed" style="height: 100vh; overflow-y: auto;">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="dashboard" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <a href="{{ route('dashboards.index') }}" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <span class="fs-5 d-none d-sm-inline">Main Menu</span>
                 </a>
                 {{-- NAV ITEM --}}
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                     <li class="nav-item">
-                        <a href="{{ route('admin') }}" class="nav-link align-middle px-0">
+                        <a href="{{ route('dashboards.index') }}" class="nav-link align-middle px-0">
                             <i class="fs-4 bi bi-house-fill"></i> <span class="ms-1 d-none d-sm-inline"></span>Dashboard
                         </a>
                     </li>
@@ -27,17 +27,17 @@
                         </a>
                         <ul class="collapse nav flex-column ms-1" id="submenu2" data-bs-parent="#menu">
                             <li class="w-100">
-                                <a href="{{ route('absensi') }}" class="nav-link px-0 ps-2">
+                                <a href="{{ route('absensis.index') }}" class="nav-link px-0 ps-2">
                                     <span class="d-none d-sm-inline submenu-toggle"><i class="bi bi-caret-right"></i> </span> Absensi
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('onproses') }}" class="nav-link px-0 ps-2">
+                                <a href="{{ route('onproses.index') }}" class="nav-link px-0 ps-2">
                                     <span class="d-none d-sm-inline submenu-toggle"><i class="bi bi-caret-right"></i> </span> Onproses
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('gaji') }}" class="nav-link px-0 ps-2">
+                                <a href="{{ route('gajis.index') }}" class="nav-link px-0 ps-2">
                                     <span class="d-none d-sm-inline submenu-toggle"><i class="bi bi-caret-right"></i> </span> Gaji
                                 </a>
                             </li>
@@ -46,7 +46,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="{{ route('income') }}" class="nav-link px-0 align-middle">
+                        <a href="{{ route('incomes.index') }}" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi bi-cash-coin"></i> <span class="ms-1 d-none d-sm-inline"></span>Incomes</a>
                     </li>
                 </ul>
@@ -68,6 +68,9 @@
                 </div>
             </div>
         </div>
+
+
+        {{-- CONTENT --}}
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
             <div class="row">
                 <div class="col-10">
@@ -75,9 +78,10 @@
                         Tabel Supplier
                     </h1>
                 </div>
+
+
                 <div class="col-2">
-                    {{-- <a href="{{route('createsupplier')}}" class="btn btn-primary">Tambah Supplier <i class="bi bi-plus-circle align-middle fs-4"></i></a> --}}
-                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
+                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
                         Tambah Supplier <i class="bi bi-plus-circle align-middle fs-4"></i>
                     </a>
 
@@ -185,12 +189,12 @@
                                         </div>
 
                                     </form>
-                                    {{-- END FORM --}}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                {{-- END FORM --}}
             </div>
 
 

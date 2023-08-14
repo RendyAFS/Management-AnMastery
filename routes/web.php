@@ -26,15 +26,28 @@ Route::post('/login', [LoginController::class, 'authenticate']);
 
 // HALAMAN ADMIN
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin');
-    Route::get('/income', [IncomeController::class, 'index'])->name('income');
-    Route::get('/absensi', [AbsensiController::class, 'index'])->name('absensi');
-    Route::get('/onproses', [OnprosesController::class, 'index'])->name('onproses');
-    Route::get('/gaji', [GajiController::class, 'index'])->name('gaji');
+    // Dashboard
+    Route::resource('dashboards', DashboardController::class);
 
     // Supplier
     Route::resource('suppliers', SupplierController::class);
     Route::get('getsuppliers', [SupplierController::class,'getData'])->name('suppliers.getData');
+    
+
+    // Absensi
+    Route::resource('absensis', AbsensiController::class);
+
+
+    //OnProses
+    Route::resource('onproses', OnprosesController::class);
+
+    //Gaji
+    Route::resource('gajis', GajiController::class);
+
+    // Incomee
+    Route::resource('incomes', IncomeController::class);
+
+
 
 
 
