@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class SupplierController extends Controller
@@ -12,10 +13,9 @@ class SupplierController extends Controller
 
     public function index()
     {
-
         // confirmDelete();
-
-         return view('admin.supplier');
+        confirmDelete();
+        return view('admin.supplier');
     }
 
     public function getData(Request $request)
@@ -84,7 +84,13 @@ class SupplierController extends Controller
         $jumlah_kain = $request->HGT + $request->INT + $request->Febri + $request->TC + $request->Biasa + $request->Lebar;
         $supplier->jumlah_kain = $jumlah_kain;
 
-        $supplier->save();
+        // Alert
+        if ($supplier->save()) {
+            $message = "Supplier " . $supplier->nama_supplier . " berhasil ditambahkan.";
+            Alert::success('Berhasil Menambahkan', $message);
+        } else {
+            Alert::error('Gagal Menambahkan', 'Terjadi kesalahan saat menambahkan supplier.');
+        }
         return redirect()->route('suppliers.index');
 
     }
@@ -103,9 +109,9 @@ class SupplierController extends Controller
     public function edit(string $id)
     {
         $supplier = Supplier::find($id);
-        return view ('admin.actions.editsupplier', compact('supplier'));
+        return view('admin.actions.editsupplier', compact('supplier'));
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
@@ -136,8 +142,12 @@ class SupplierController extends Controller
         $jumlah_kain = $request->HGT + $request->INT + $request->Febri + $request->TC + $request->Biasa + $request->Lebar;
         $supplier->jumlah_kain = $jumlah_kain;
 
-        $supplier->save();
-
+        if ($supplier->save()) {
+            $message = "Supplier " . $supplier->nama_supplier . " berhasil diedit.";
+            Alert::success('Berhasil Mengedit', $message);
+        } else {
+            Alert::error('Gagal Mengedit', 'Terjadi kesalahan saat mengedit supplier.');
+        }
         return redirect()->route('suppliers.index')->with('success', 'Data supplier berhasil diperbarui.');
     }
 
