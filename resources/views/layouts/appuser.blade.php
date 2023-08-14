@@ -74,6 +74,9 @@
 
         <main class="py-4">
             @yield('content')
+            @vite('resources/js/app.js')
+            @stack('scripts')
+            @include('sweetalert::alert')
         </main>
     </div>
 </body>

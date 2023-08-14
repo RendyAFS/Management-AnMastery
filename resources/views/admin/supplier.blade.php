@@ -84,115 +84,8 @@
                     <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
                         Tambah Supplier <i class="bi bi-plus-circle align-middle fs-4"></i>
                     </a>
-
                     <!-- Modal Tambah Supplier -->
-                    <div class="modal fade" id="addSupplierModal" tabindex="-1" aria-labelledby="addSupplierModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title" id="addSupplierModalLabel">Tambah Supplier</h4>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ route('suppliers.store') }}" method="POST" enctype="multipart/form-data">
-                                        @csrf <!-- CSRF token -->
-
-                                        <div class="form-group">
-                                            <label for="nama_supplier">Nama Supplier</label>
-                                            <input type="text" class="form-control" id="nama_supplier" name="nama_supplier" value="{{ old('nama_supplier') }}" required>
-                                            @error('nama_supplier')
-                                            <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label for="alamat">Alamat</label>
-                                            <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{ old('alamat') }}</textarea>
-                                            @error('alamat')
-                                            <div class="text-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="HGT">HGT</label>
-                                                    <input type="number" class="form-control" id="HGT" name="HGT" value="{{ old('HGT', 0) }}" required>
-                                                    @error('HGT')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="INT">INT</label>
-                                                    <input type="number" class="form-control" id="INT" name="INT" value="{{ old('INT', 0) }}" required>
-                                                    @error('INT')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="Febri">Febri</label>
-                                                    <input type="number" class="form-control" id="Febri" name="Febri" value="{{ old('Febri', 0) }}" required>
-                                                    @error('Febri')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="TC">TC</label>
-                                                    <input type="number" class="form-control" id="TC" name="TC" value="{{ old('TC', 0) }}" required>
-                                                    @error('TC')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="Biasa">Biasa</label>
-                                                    <input type="number" class="form-control" id="Biasa" name="Biasa" value="{{ old('Biasa', 0) }}" required>
-                                                    @error('Biasa')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group">
-                                                    <label for="Lebar">Lebar</label>
-                                                    <input type="number" class="form-control" id="Lebar" name="Lebar" value="{{ old('Lebar', 0) }}" required>
-                                                    @error('Lebar')
-                                                    <div class="text-danger">{{ $message }}</div>
-                                                    @enderror
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-4">
-                                            <div class="col-3"></div>
-                                            <div class="col-3 d-grid">
-                                                <button type="submit" class="btn btn-primary ">Tambah</button>
-                                            </div>
-                                            <div class="col-3 d-grid">
-                                                <a href="" class="btn btn-danger me-1" data-bs-dismiss="modal" aria-label="Close">
-                                                    Batal
-                                                </a>
-                                            </div>
-                                            <div class="col-3"></div>
-                                        </div>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @include('admin.actions.tambahsupplier')
                 </div>
                 {{-- END FORM --}}
             </div>
@@ -203,8 +96,9 @@
                 <div class="row">
                     <div class="col">
                         <div class="table-responsive border ps-4 pe-5 pt-3 pb-3 rounded-3">
-                            <table class="table table-bordered table-hover table-striped mb-0 bg-white "
+                            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable"
                             id="tabelsupplier">
+
                                 <thead>
                                     <tr class="text-center">
                                         <th>id</th>
@@ -268,6 +162,26 @@
                     [10, 25, 50, 100, -1],
                     [10, 25, 50, 100, "All"],
                 ],
+            });
+
+            $(".datatable").on("click", ".btn-delete", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var nama_supplier = form.data("nama_supplier");
+
+                Swal.fire({
+                    title: "Apakah Anda Yakin Menghapus Supplier " + nama_supplier + "?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-primary",
+                    confirmButtonText: "Ya, hapus!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
             });
         });
     </script>
