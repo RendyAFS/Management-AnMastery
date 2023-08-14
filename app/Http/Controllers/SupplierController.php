@@ -9,17 +9,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class SupplierController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     $suppliers = Supplier::all();
-
-    //     return view('admin.supplier', [
-    //         'suppliers' => $suppliers,
-    //     ]);
-    // }
 
     public function index()
     {
@@ -113,10 +102,10 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
-        // $supplier = Supplier::find($id);
-        // return view ('admin.actions.editsupplier', compact('supplier'));
+        $supplier = Supplier::find($id);
+        return view ('admin.actions.editsupplier', compact('supplier'));
     }
-
+    
     /**
      * Update the specified resource in storage.
      */
