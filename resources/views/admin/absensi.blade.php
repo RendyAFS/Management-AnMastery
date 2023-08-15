@@ -68,8 +68,107 @@
             </div>
         </div>
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
-            Content area... Absensi
+            <div class="row">
+                <div class="col-10">
+                    <h1>
+                        Tabel Absensi
+                    </h1>
+                </div>
+
+
+                <div class="col-2">
+                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addKaryawanModal">
+                        Tambah Karyawan <i class="bi bi-plus-circle align-middle fs-4"></i>
+                    </a>
+                    <!-- Modal Tambah Supplier -->
+                    @include('admin.actions.tambahkaryawan')
+                </div>
+                {{-- END FORM --}}
+
+                {{-- TABEL --}}
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col">
+                        <div class="table-responsive border ps-4 pe-5 pt-3 pb-3 rounded-3">
+                            <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable"
+                            id="tabelemployee">
+
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>id</th>
+                                        <th class="text-center">No.</th>
+                                        <th class="text-center">Nama Karyawan</th>
+                                        <th>Umur</th>
+                                        <th class="text-center">Alamat</th>
+                                        <th class="text-center">Nomor Hp</th>
+                                        <th class="text-center">Opsi</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
         </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $("#tabelemployee").DataTable({
+                serverSide: true,
+                processing: true,
+                ajax: "getemployees",
+                columns: [
+                    { data: "id", name: "id", visible: false },
+                    {
+                        data: "DT_RowIndex",
+                        name: "DT_RowIndex",
+                        orderable: false,
+                        searchable: false,
+                        width: "2%",
+                        className: 'align-middle text-center',
+                        render: function(data, type, row, meta) {
+                            // Mengembalikan nomor indeks dengan titik di depannya
+                            return (meta.row + 1) + ".";
+                        }
+                    },
+                    { data: "nama_karyawan", name: "nama_karyawan", className: 'align-middle', searchable: true },
+                    { data: "umur", name: "umur", visible: false, orderable: false, },
+                    { data: "alamat", name: "alamat", visible: false, orderable: false, },
+                    { data: "nohp", name: "nohp", visible: false, orderable: false, },
+                    { data: "actions", name: "actions", orderable: false, searchable: false, width: "5%" },
+                ],
+                order: [[0, "desc"]],
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"],
+                ],
+            });
+
+            $(".datatable").on("click", ".btn-delete", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var nama_karyawan = form.data("nama_karyawan");
+
+                Swal.fire({
+                    title: "Apakah Anda Yakin Menghapus Karyawan " + nama_karyawan + "?",
+                    text: "Anda tidak akan dapat mengembalikannya!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-primary",
+                    confirmButtonText: "Ya, hapus!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
