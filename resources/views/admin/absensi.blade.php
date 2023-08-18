@@ -83,6 +83,8 @@
                     <!-- Modal Tambah Supplier -->
                     @include('admin.actions.tambahkaryawan')
                 </div>
+
+                </div>
                 {{-- END FORM --}}
 
                 {{-- TABEL --}}
@@ -92,7 +94,6 @@
                         <div class="table-responsive border ps-4 pe-5 pt-3 pb-3 rounded-3">
                             <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable"
                             id="tabelemployee">
-
                                 <thead>
                                     <tr class="text-center">
                                         <th>id</th>
@@ -140,7 +141,7 @@
                     { data: "nama_karyawan", name: "nama_karyawan", className: 'align-middle', searchable: true },
                     { data: "umur", name: "umur", visible: false, orderable: false, },
                     { data: "alamat", name: "alamat", visible: false, orderable: false, },
-                    { data: "nohp", name: "nohp", visible: false, orderable: false, },
+                    { data: "nohp", name: "nohp", visible: true, orderable: false, className: 'align-middle text-center' },
                     { data: "actions", name: "actions", orderable: false, searchable: false, width: "5%" },
                 ],
                 order: [[0, "desc"]],
