@@ -18,6 +18,9 @@
             </div>
         </div>
 
+        <a href="#" class="btn btn-outline-success me-2 save-total-absensi" data-employee-id="' + row.id + '" >
+            <i class="bi bi-calendar-check fs-6"></i>
+        </a>
 
         <div>
             <form action="{{ route('absensis.destroy', ['absensi' => $employee->id]) }}" method="POST"

@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->integer('umur');
             $table->string('alamat');
             $table->string('nohp');
+            $table->integer('total_absensi')->default(0);
             $table->timestamps();
         });
     }
