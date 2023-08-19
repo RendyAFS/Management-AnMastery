@@ -44,6 +44,16 @@
             @enderror
         </div>
 
+
+        {{-- ABSENSI --}}
+        <div class="form-group mt-3">
+            {{-- <label for="total_absensi" class="fw-bold">Total Absen</label> --}}
+            <input type="hidden" class="form-control border-dark" id="total_absensi" name="total_absensi" value="{{ old('total_absensi', $employee->total_absensi) }}" required>
+            @error('total_absensi')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
         <div class="row mt-4">
             <div class="col-3"></div>
             <div class="col-3 d-grid">

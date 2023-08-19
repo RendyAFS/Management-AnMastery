@@ -37,6 +37,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     // Absensi
     Route::resource('absensis', AbsensiController::class);
     Route::get('getemployees', [AbsensiController::class,'getData'])->name('employees.getData');
+    Route::get('absensi/{id}', [AbsensiController::class, 'absensi'])->name('absensi.show');
 
 
     //OnProses
