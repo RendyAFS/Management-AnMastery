@@ -99,6 +99,12 @@ class AbsensiController extends Controller
         return view('admin.actions.editkaryawan', compact('employee'));
     }
 
+    public function absensi(string $id)
+    {
+        $employee = Employee::find($id);
+        return view('admin.actions.absenkaryawan', compact('employee'));
+    }
+
     /**
      * Update the specified resource in storage.
      */
@@ -116,6 +122,7 @@ class AbsensiController extends Controller
             'umur' => 'numeric',
             'alamat' => 'required',
             'nohp' => 'required|numeric',
+            'total_absensi' => 'numeric',
         ], $messages);
 
         if ($validator->fails()) {
@@ -134,6 +141,7 @@ class AbsensiController extends Controller
         $employee->umur = $request->umur;
         $employee->alamat = $request->alamat;
         $employee->nohp = $request->nohp;
+        $employee->total_absensi = $request->total_absensi;
 
         // Alert
         if ($employee->save()) {
