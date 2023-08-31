@@ -40,6 +40,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     Route::get('absensi/{id}', [AbsensiController::class, 'absensi'])->name('absensi.show');
 
 
+
     //OnProses
     Route::resource('onproses', OnprosesController::class);
 

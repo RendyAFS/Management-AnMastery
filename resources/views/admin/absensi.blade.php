@@ -144,10 +144,10 @@
                     { data: "nohp", name: "nohp", visible: true, orderable: false, className: 'align-middle text-center' },
                     { data: "actions", name: "actions", orderable: false, searchable: false, width: "5%" },
                 ],
-                order: [[0, "desc"]],
+                // order: [[0, "desc"]],
                 lengthMenu: [
-                    [10, 25, 50, 100, -1],
-                    [10, 25, 50, 100, "All"],
+                    [25, 50, 100, -1],
+                    [25, 50, 100, "All"],
                 ],
             });
 
