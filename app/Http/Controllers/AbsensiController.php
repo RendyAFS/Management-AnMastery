@@ -154,6 +154,8 @@ class AbsensiController extends Controller
         return redirect()->route('absensis.index');
     }
 
+
+
     /**
      * Remove the specified resource from storage.
      */

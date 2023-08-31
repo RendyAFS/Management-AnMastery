@@ -4,8 +4,13 @@
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
+
+
+
 <body>
     <div class="d-flex justify-content-center">
+
+        {{-- EDIT --}}
         <a href="#" class="btn btn-outline-primary me-2 edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{ $employee->id }}">
             <i class="bi bi-pencil-square fs-6"></i>
         </a>
@@ -19,7 +24,7 @@
         </div>
 
 
-
+        {{-- ABSEN --}}
         <a href="#" class="btn btn-outline-success me-2 absen-btn" data-bs-toggle="modal" data-bs-target="#absenModal" data-id="{{ $employee->id }}">
             <i class="bi bi-calendar-check fs-6"></i>
         </a>
@@ -32,6 +37,7 @@
         </div>
 
 
+        {{-- DESTROY --}}
         <div>
             <form action="{{ route('absensis.destroy', ['absensi' => $employee->id]) }}" method="POST"
                 class="your-form-class" data-nama_karyawan="{{ $employee->nama_karyawan }}">
@@ -59,7 +65,6 @@
             });
         });
 
-
         $(document).ready(function() {
             $('.absen-btn').on('click', function() {
                 var id = $(this).data('id');
@@ -72,13 +77,7 @@
                 });
             });
         });
-
-
     </script>
-
-
-
-
 </body>
 </html>
 
