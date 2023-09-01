@@ -3,38 +3,28 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-</head>
 
+
+
+    <style>
+
+    </style>
+</head>
 
 
 <body>
     <div class="d-flex justify-content-center">
 
         {{-- EDIT --}}
-        <a href="#" class="btn btn-outline-primary me-2 edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{ $employee->id }}">
+        <a href="{{ route('absensis.edit', ['absensi' => $employee->id]) }}" class="btn btn-outline-primary me-2 edit-btn">
             <i class="bi bi-pencil-square fs-6"></i>
         </a>
 
-        <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    @include('admin.actions.editkaryawan')
-                </div>
-            </div>
-        </div>
-
-
         {{-- ABSEN --}}
-        <a href="#" class="btn btn-outline-success me-2 absen-btn" data-bs-toggle="modal" data-bs-target="#absenModal" data-id="{{ $employee->id }}">
+        <a href="{{ route('absensi.show', ['id' => $employee->id]) }}" class="btn btn-outline-success me-2 absen-btn">
             <i class="bi bi-calendar-check fs-6"></i>
         </a>
-        <div class="modal fade" id="absenModal" tabindex="-1" aria-labelledby="absenModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    @include('admin.actions.absenkaryawan')
-                </div>
-            </div>
-        </div>
+
 
 
         {{-- DESTROY --}}
@@ -49,35 +39,6 @@
           </form>
         </div>
     </div>
-
-
-    <script>
-        $(document).ready(function() {
-            $('.edit-btn').on('click', function() {
-                var id = $(this).data('id');
-                $.ajax({
-                    url: "{{ route('absensis.edit', ['absensi' => ':id']) }}".replace(':id', id),
-                    method: 'GET',
-                    success: function(response) {
-                        $('#editModal .modal-content').html(response);
-                    }
-                });
-            });
-        });
-
-        $(document).ready(function() {
-            $('.absen-btn').on('click', function() {
-                var id = $(this).data('id');
-                $.ajax({
-                    url: "{{ route('absensi.show', ['id' => ':id']) }}".replace(':id', id),
-                    method: 'GET',
-                    success: function(response) {
-                        $('#absenModal .modal-content').html(response);
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
 
