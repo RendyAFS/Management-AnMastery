@@ -1,7 +1,7 @@
 @extends('layouts.appadmin')
 
 @section('content')
-<div class="container mt-5">
+<div class="container pt-5 mt-5">
     <div class="row">
         <div class="col-4 mx-auto"> <!-- Use mx-auto to center the card -->
             <div class="card">
@@ -41,6 +41,16 @@
                             <label for="nohp" class="fw-bold">Nomor HP</label>
                             <input type="number" class="form-control border-dark" id="nohp" name="nohp" value="{{ old('nohp', $employee->nohp) }}" required>
                             @error('nohp')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mt-3" style="display: none">
+                            <label for="total_absensi" class="fw-bold">Total Absen</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control border-dark" id="totalCheckedInput" name="total_absensi" value="{{ old('total_absensi', $employee->total_absensi) }}" required>
+                            </div>
+                            @error('total_absensi')
                             <div class="text-danger">{{ $message }}</div>
                             @enderror
                         </div>
