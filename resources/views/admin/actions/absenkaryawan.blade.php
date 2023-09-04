@@ -6,13 +6,109 @@
         /* Anda juga bisa mengatur properti lain seperti margin jika diperlukan */
         /* margin: 5px; */
     }
+    .checkbox-label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .cancel-button {
+        position: absolute;
+        top: 1px;
+        right: 10px;
+        font-size: 50px;
+        text-decoration: none;
+        color: #dc3545; /* Warna merah untuk ikon "X" */
+        z-index: 1;
+    }
+
+    @media only screen and (max-width: 768px) {
+        /* Ubah ukuran font menjadi lebih kecil, misalnya, 30px */
+        .cancel-button {
+            font-size: 30px;
+        }
+    }
+    /* #header-edit{
+        background-color: blue;
+    } */
+    /* #header-kalender{
+        background-color: blue;
+    } */
+    /* #header-absen{
+        background-color: blue;
+    } */
 </style>
 
 
 @section('content')
 <div class="container mt-5">
+    <a href="{{route('absensis.index')}}" class="cancel-button">
+        <i class="bi bi-x"></i>
+    </a>
     <div class="row">
-        <div class="col-4 mx-auto"> <!-- Use mx-auto to center the card -->
+        <div class="col-lg-4 mx-auto">
+            <div class="card">
+                <div class="card-header" id="header-edit">
+                    <h2 class="modal-title">Edit Karyawan</h2>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('absensis.update', $employee->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT') <!-- Use PUT method for updates -->
+
+                        <div class="form-group mt-3">
+                            <label for="nama_karyawan" class="fw-bold">Nama Karyawan</label>
+                            <input type="text" class="form-control border-dark" id="nama_karyawan" name="nama_karyawan" value="{{ old('nama_karyawan', $employee->nama_karyawan) }}" required>
+                            @error('nama_karyawan')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="umur" class="fw-bold">Umur</label>
+                            <input type="number" class="form-control border-dark" id="umur" name="umur" value="{{ old('umur', $employee->umur) }}" required>
+                            @error('umur')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="alamat" class="fw-bold">Alamat</label>
+                            <textarea class="form-control border-dark" id="alamat" name="alamat" rows="3" required>{{ old('alamat', $employee->alamat) }}</textarea>
+                            @error('alamat')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="nohp" class="fw-bold">Nomor HP</label>
+                            <input type="number" class="form-control border-dark" id="nohp" name="nohp" value="{{ old('nohp', $employee->nohp) }}" required>
+                            @error('nohp')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mt-3" style="display:none">
+                            <label for="total_absensi" class="fw-bold">Total Absen</label>
+                            <div class="input-group">
+                                <input type="number" class="form-control border-dark" id="total_absensi" name="total_absensi" value="{{ old('total_absensi', $employee->total_absensi) }}" required>
+                            </div>
+                            @error('total_absensi')
+                            <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-3"></div>
+                            <div class="col-6 d-grid">
+                                <button type="submit" class="btn btn-primary ">Edit</button>
+                            </div>
+                            <div class="col-3"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
             @php
                 $dayNames = [
                     'Sunday' => 'Minggu',
@@ -45,8 +141,8 @@
             @endphp
 
             <div class="card">
-                <div class="card-header">
-                    <h2 class="modal-title">Tanggal</h2>
+                <div class="card-header" id="header-kalender">
+                    <h2 class="modal-title">Kalender</h2>
                 </div>
                 <div class="card-body text-center">
                     <h4>
@@ -57,39 +153,8 @@
                     </h5>
                 </div>
             </div>
-
-            <div class="card mt-4">
-                <div class="card-header">
-                    <h2 class="modal-title">Identitas Karyawan</h2>
-                </div>
-                <div class="card-body">
-                    <label for="nama_karyawan" class="fw-bold mt-1">Nama Karyawan:</label>
-                    <div name="nama_karyawan">
-                        <i class="bi bi-arrow-right-circle"></i> {{ old('nama_karyawan', $employee->nama_karyawan) }}
-                    </div>
-
-                    <label for="umur" class="fw-bold mt-2">Umur:</label>
-                    <div name="umur">
-                        <i class="bi bi-arrow-right-circle"></i> {{ old('umur', $employee->umur) }} Tahun
-                    </div>
-
-                    <label for="nohp" class="fw-bold mt-2">Nomor HP:</label>
-                    <div name="nohp">
-                        <i class="bi bi-arrow-right-circle"></i> {{ old('nohp', $employee->nohp) }}
-                    </div>
-
-                    <label for="alamat" class="fw-bold mt-2">Alamat:</label>
-                    <div name="alamat">
-                        <i class="bi bi-arrow-right-circle"></i> {{ old('alamat', $employee->alamat) }}
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-        <div class="col-8">
-            <div class="card card-lg">
-                <div class="card-header">
+            <div class="card card-lg  mt-4">
+                <div class="card-header" id="header-absen">
                     <h2 class="modal-title">Absensi Karyawan</h2>
                 </div>
                 <div class="card-body">
@@ -119,34 +184,34 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <label><input type="checkbox" name="senin[]" value="Pagi"> Pagi</label><br>
-                                            <label><input type="checkbox" name="senin[]" value="Siang"> Siang</label><br>
-                                            <label><input type="checkbox" name="senin[]" value="Lembur"> Lembur</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="senin[]" value="Pagi"> Pagi</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="senin[]" value="Siang"> Siang</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="senin[]" value="Lembur"> Lembur</label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="selasa[]" value="Pagi"> Pagi</label><br>
-                                            <label><input type="checkbox" name="selasa[]" value="Siang"> Siang</label><br>
-                                            <label><input type="checkbox" name="selasa[]" value="Lembur"> Lembur</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="selasa[]" value="Pagi"> Pagi</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="selasa[]" value="Siang"> Siang</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="selasa[]" value="Lembur"> Lembur</label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="rabu[]" value="Pagi"> Pagi</label><br>
-                                            <label><input type="checkbox" name="rabu[]" value="Siang"> Siang</label><br>
-                                            <label><input type="checkbox" name="rabu[]" value="Lembur"> Lembur</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="rabu[]" value="Pagi"> Pagi</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="rabu[]" value="Siang"> Siang</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="rabu[]" value="Lembur"> Lembur</label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="kamis[]" value="Pagi"> Pagi</label><br>
-                                            <label><input type="checkbox" name="kamis[]" value="Siang"> Siang</label><br>
-                                            <label><input type="checkbox" name="kamis[]" value="Lembur"> Lembur</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="kamis[]" value="Pagi"> Pagi</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="kamis[]" value="Siang"> Siang</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="kamis[]" value="Lembur"> Lembur</label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="jumat[]" value="Pagi"> Pagi</label><br>
-                                            <label><input type="checkbox" name="jumat[]" value="Siang"> Siang</label><br>
-                                            <label><input type="checkbox" name="jumat[]" value="Lembur"> Lembur</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="jumat[]" value="Pagi"> Pagi</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="jumat[]" value="Siang"> Siang</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="jumat[]" value="Lembur"> Lembur</label>
                                         </td>
                                         <td>
-                                            <label><input type="checkbox" name="sabtu[]" value="Pagi"> Pagi</label><br>
-                                            <label><input type="checkbox" name="sabtu[]" value="Siang"> Siang</label><br>
-                                            <label><input type="checkbox" name="sabtu[]" value="Lembur"> Lembur</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="sabtu[]" value="Pagi"> Pagi</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="sabtu[]" value="Siang"> Siang</label>
+                                            <label class="checkbox-label"><input type="checkbox" name="sabtu[]" value="Lembur"> Lembur</label>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -167,13 +232,8 @@
                             <!-- Submit and Cancel Buttons -->
                             <div class="row mt-4">
                                 <div class="col-3"></div>
-                                <div class="col-3 d-grid">
+                                <div class="col-6 d-grid">
                                     <button type="submit" class="btn btn-primary">Absen</button>
-                                </div>
-                                <div class="col-3 d-grid">
-                                    <a href="{{route('absensis.index')}}" class="btn btn-danger me-1">
-                                        Batal
-                                    </a>
                                 </div>
                                 <div class="col-3"></div>
                             </div>

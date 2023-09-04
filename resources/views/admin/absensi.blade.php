@@ -139,12 +139,21 @@
                         }
                     },
                     { data: "nama_karyawan", name: "nama_karyawan", className: 'align-middle', searchable: true },
-                    { data: "umur", name: "umur", visible: false, orderable: false, },
-                    { data: "alamat", name: "alamat", visible: false, orderable: false, },
+                    {
+                        data: "umur",
+                        name: "umur",
+                        className: 'align-middle text-center',
+                        visible: true,
+                        orderable: false,
+                        render: function(data, type, row, meta) {
+                            // Menambahkan "Tahun" setelah data umur
+                            return data + ' Tahun';
+                        }
+                    },
+                    { data: "alamat", name: "alamat", visible: false, orderable: false },
                     { data: "nohp", name: "nohp", visible: true, orderable: false, className: 'align-middle text-center' },
                     { data: "actions", name: "actions", orderable: false, searchable: false, width: "5%" },
                 ],
-                // order: [[0, "desc"]],
                 lengthMenu: [
                     [25, 50, 100, -1],
                     [25, 50, 100, "All"],
@@ -162,8 +171,8 @@
                     text: "Anda tidak akan dapat mengembalikannya!",
                     icon: "warning",
                     showCancelButton: true,
-                    confirmButtonClass: "bg-primary",
                     confirmButtonText: "Ya, hapus!",
+                    cancelButtonText: "Tidak, batalkan"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();

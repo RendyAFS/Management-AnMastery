@@ -14,12 +14,6 @@
 
 <body>
     <div class="d-flex justify-content-center">
-
-        {{-- EDIT --}}
-        <a href="{{ route('absensis.edit', ['absensi' => $employee->id]) }}" class="btn btn-outline-primary me-2 edit-btn">
-            <i class="bi bi-pencil-square fs-6"></i>
-        </a>
-
         {{-- ABSEN --}}
         <a href="{{ route('absensi.show', ['id' => $employee->id]) }}" class="btn btn-outline-success me-2 absen-btn">
             <i class="bi bi-calendar-check fs-6"></i>
