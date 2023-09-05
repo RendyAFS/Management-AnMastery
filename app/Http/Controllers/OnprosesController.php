@@ -2,7 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\Fabric;
+use App\Models\PictureFabric;
+use App\Models\Supplier;
+use App\Models\TypeColor;
+use App\Models\TypeFabric;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class OnprosesController extends Controller
 {
@@ -11,25 +18,66 @@ class OnprosesController extends Controller
      */
     public function index()
     {
-        return view('admin.onproses');
+        $suppliers = Supplier::orderBy('nama_supplier', 'asc')->get(); // Mengambil semua data supplier
+        $employees = Employee::orderBy('nama_karyawan', 'asc')->get(); // Mengambil semua data karyawan
+        $typefabrics = TypeFabric::all(); // Mengambil semua data jenis kain
+        $typecolors = TypeColor::all(); // Mengambil semua data jenis warna
+        $picturefabrics = PictureFabric::orderBy('gambar_kain', 'asc')->get(); // Mengambil semua data gambar kain
+        return view('admin.onproses', compact('suppliers', 'employees', 'typefabrics', 'typecolors', 'picturefabrics'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
+
+     public function create()
+     {
+        //  $suppliers = Supplier::all(); // Mengambil semua data supplier
+        //  $employees = Employee::all(); // Mengambil semua data karyawan
+        //  $typefabrics = TypeFabric::all(); // Mengambil semua data jenis kain
+        //  $typecolors = TypeColor::all(); // Mengambil semua data jenis warna
+        //  $picturefabrics = PictureFabric::all(); // Mengambil semua data gambar kain
+
+        //  return view('admin.actions.tambahproses', compact('suppliers', 'employees', 'typefabrics', 'typecolors', 'picturefabrics'));
+     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
-    }
+        // Tentukan pesan kesalahan kustom
+        $messages = [
+            'required' => ':attribute harus diisi.',
+        ];
 
+        // Validasi input menggunakan Validator
+        $validator = Validator::make($request->all(), [
+            'nama_supplier' => 'required',
+            'nama_karyawan' => 'required',
+            'type_fabric' => 'required',
+            'type_color' => 'required',
+            'picture_fabric' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+
+        // Validasi berhasil, lanjutkan untuk menyimpan data
+        $fabric = new Fabric;
+        $fabric->suppliers_id = $request->nama_supplier;
+        $fabric->employees_id = $request->nama_karyawan;
+        $fabric->type_fabrics_id = $request->type_fabric;
+        $fabric->type_colors_id = $request->type_color;
+        $fabric->picture_fabrics_id = $request->picture_fabric;
+
+        $fabric->save();
+
+        return redirect()->route('onproses.index');
+    }
     /**
      * Display the specified resource.
      */

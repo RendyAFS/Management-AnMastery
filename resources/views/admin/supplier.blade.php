@@ -82,10 +82,22 @@
 
                 <div class="col-2">
                     <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
-                        Tambah Supplier <i class="bi bi-plus-circle align-middle fs-4"></i>
+                        Tambah Supplier <i class="bi bi-plus-circle align-middle fs-4 ms-2"></i>
                     </a>
-                    <!-- Modal Tambah Supplier -->
-                    @include('admin.actions.tambahsupplier')
+                    <div class="modal fade" id="addSupplierModal" tabindex="-1" aria-labelledby="addSupplierModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="addSupplierModalLabel">Tambah Supplier</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Modal Tambah Supplier -->
+                                    @include('admin.actions.tambahsupplier')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 {{-- END FORM --}}
             </div>

@@ -69,20 +69,33 @@
         </div>
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
             <div class="row">
-                <div class="col-10">
+                <div class="col-lg-10">
                     <h1>
                         Tabel Absensi
                     </h1>
                 </div>
 
 
-                <div class="col-2">
+                <div class="col-lg-2 ">
                     <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addKaryawanModal">
                         Tambah Karyawan <i class="bi bi-plus-circle align-middle fs-4"></i>
                     </a>
-                    <!-- Modal Tambah Supplier -->
-                    @include('admin.actions.tambahkaryawan')
+                    <div class="modal fade" id="addKaryawanModal" tabindex="-1" aria-labelledby="addKaryawanModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="addKaryawanModalLabel">Tambah Karyawan</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Modal Tambah Supplier -->
+                                    @include('admin.actions.tambahkaryawan')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
 
                 </div>
                 {{-- END FORM --}}

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('fabrics', function (Blueprint $table) {
             $table->id();
             $table->foreignId('suppliers_id')->constrained();
+            $table->foreignId('employees_id')->constrained();
             $table->foreignId('type_fabrics_id')->constrained();
             $table->foreignId('type_colors_id')->constrained();
             $table->foreignId('picture_fabrics_id')->constrained();
