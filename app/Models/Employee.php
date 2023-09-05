@@ -9,11 +9,8 @@ class Employee extends Model
 {
     use HasFactory;
 
-    public function payment()
+    public function fabric()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Fabric::class);
     }
-
-
-
 }
