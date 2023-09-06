@@ -15,9 +15,9 @@ class TypeColorsSeeder extends Seeder
     public function run()
     {
         $colors = [
-            ['jenis_warna' => '1w'],
-            ['jenis_warna' => '2w'],
-            ['jenis_warna' => '3w'],
+            ['jenis_warna' => '1 Warna'],
+            ['jenis_warna' => '2 Warna'],
+            ['jenis_warna' => '3 Warna'],
         ];
 
         foreach ($colors as $color) {

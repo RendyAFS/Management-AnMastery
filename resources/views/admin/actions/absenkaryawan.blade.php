@@ -222,7 +222,7 @@
                                 <label for="total_absensi" class="fw-bold">Total Absen</label>
                                 <div class="input-group">
                                     <input type="number" class="form-control border-dark" id="totalCheckedInput" name="total_absensi" value="{{ old('total_absensi', $employee->total_absensi) }}" required>
-                                    <button type="button" id="clearTotalChecked" class="btn btn-secondary"><i class="bi bi-backspace"></i></button>
+                                    <button type="button" id="clearTotalChecked" class="btn btn-danger"><i class="bi bi-backspace"></i></button>
                                 </div>
                                 @error('total_absensi')
                                 <div class="text-danger">{{ $message }}</div>

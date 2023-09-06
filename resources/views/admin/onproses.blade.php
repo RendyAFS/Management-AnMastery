@@ -1,5 +1,5 @@
 @extends('layouts.appadmin')
-
+{{-- style="border: 1px black solid" --}}
 @section('content')
 <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -68,33 +68,135 @@
             </div>
         </div>
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-10">
-                        <h1>
-                            Tabel On Proses
-                        </h1>
-                    </div>
+            <div class="row">
+                <div class="col-xl-8 col-lg-8 col-md-12">
+                    <h1>
+                        Tabel On Proses
+                    </h1>
+                </div>
 
 
-                    <div class="col-2">
+                <div class="col-xl-4 col-lg-4 col-md-12" >
+                    <div class="d-flex justify-content-end">
+                        <a href="" class="btn btn-success me-3">
+                            Pengiriman <i class="bi bi-truck align-middle fs-4 ms-2"></i>
+                        </a>
+
                         <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProsesModal">
                             Tambah Proses <i class="bi bi-plus-circle align-middle fs-4 ms-2"></i>
                         </a>
-                        <!-- Modal Tambah Supplier -->
-                        <div class="modal fade" id="addProsesModal" tabindex="-1" aria-labelledby="addProsesModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title" id="addProsesModalLabel">Tambah Proses</h3>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        @include('admin.actions.tambahproses')
-                                    </div>
+                    </div>
+
+                    <!-- Modal Tambah Supplier -->
+                    <div class="modal fade" id="addProsesModal" tabindex="-1" aria-labelledby="addProsesModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="addProsesModalLabel">Tambah Proses</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @include('admin.actions.tambahproses')
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row mt-4">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="modal-title">Sisa Kain</h3>
+                        </div>
+                        <div class="card-body">
+                            @foreach ($suppliers as $supplier)
+                            <div class="row">
+                                <div class="col-5">
+                                    <p class="fw-bold">
+                                        <i class="bi bi-person-fill"></i> {{ $supplier->nama_supplier }}
+                                    </p>
+                                </div>
+                                <div class="col-7">
+                                    <p>Sisa Kain: {{ $supplier->jumlah_kain }} Seri</p>
+
+                                </div> <hr>
+                                <div class="none">
+                                    {{-- <div class="col">
+                                        {{ $supplier->HGT }}
+                                    </div>
+                                    <div class="col">
+                                        {{ $supplier->INT }}
+                                    </div>
+                                    <div class="col">
+                                        {{ $supplier->Febri }}
+                                    </div>
+                                    <div class="col">
+                                        {{ $supplier->TC }}
+                                    </div>
+                                    <div class="col">
+                                        {{ $supplier->Lebar }}
+                                    </div>
+                                    <div class="col">
+                                        {{ $supplier->Biasa }}
+                                    </div> --}}
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row d-flex justify-content-center">
+                        @foreach ($fabrics as $fabric)
+                            @php
+                                $jenisWarna = $fabric->typecolor->jenis_warna;
+                                $bgClass = '';
+
+                                switch ($jenisWarna) {
+                                    case '1 Warna':
+                                        $bgClass = 'bg-danger';
+                                        break;
+                                    case '2 Warna':
+                                        $bgClass = 'bg-success';
+                                        break;
+                                    case '3 Warna':
+                                        $bgClass = 'bg-primary';
+                                        break;
+                                    // Tambahkan pengkondisian lain jika diperlukan
+                                }
+                            @endphp
+                            <div class="card text-white {{$bgClass}} mb-3 me-3 border" style="max-width: 15rem;">
+                                <div class="card-header">
+                                    <h4>
+                                        <i class="bi bi-person-fill"></i> {{$fabric->employee->nama_karyawan}}
+                                    </h4>
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="bi bi-layers-fill"></i> {{$fabric->supplier->nama_supplier}}
+                                    </h5>
+
+                                    <p class="card-text">
+                                        <i class="bi bi-dot"></i>{{$fabric->typefabric->jenis_kain}}<br>
+                                        <i class="bi bi-dot"></i>{{$fabric->typecolor->jenis_warna}} <br>
+                                        <i class="bi bi-dot"></i>{{$fabric->picturefabric->gambar_kain}}
+                                    </p>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row ">
+                                        <div class="col-lg-12 d-grid mb-2">
+                                            <a href="" class="text-decoration-none btn btn-light">Edit</a>
+                                        </div>
+                                        <div class="col-lg-12 d-grid">
+                                            <a href="" class="text-decoration-none btn btn-light">Selesai</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -102,3 +204,4 @@
     </div>
 </div>
 @endsection
+
