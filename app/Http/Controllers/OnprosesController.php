@@ -10,6 +10,7 @@ use App\Models\TypeColor;
 use App\Models\TypeFabric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class OnprosesController extends Controller
 {
@@ -23,7 +24,9 @@ class OnprosesController extends Controller
         $typefabrics = TypeFabric::all(); // Mengambil semua data jenis kain
         $typecolors = TypeColor::all(); // Mengambil semua data jenis warna
         $picturefabrics = PictureFabric::orderBy('gambar_kain', 'asc')->get(); // Mengambil semua data gambar kain
-        return view('admin.onproses', compact('suppliers', 'employees', 'typefabrics', 'typecolors', 'picturefabrics'));
+        $fabrics = Fabric::all();
+        return view('admin.onproses',
+        compact('suppliers', 'employees', 'typefabrics', 'typecolors', 'picturefabrics', 'fabrics'));
     }
 
     /**
@@ -32,13 +35,7 @@ class OnprosesController extends Controller
 
      public function create()
      {
-        //  $suppliers = Supplier::all(); // Mengambil semua data supplier
-        //  $employees = Employee::all(); // Mengambil semua data karyawan
-        //  $typefabrics = TypeFabric::all(); // Mengambil semua data jenis kain
-        //  $typecolors = TypeColor::all(); // Mengambil semua data jenis warna
-        //  $picturefabrics = PictureFabric::all(); // Mengambil semua data gambar kain
 
-        //  return view('admin.actions.tambahproses', compact('suppliers', 'employees', 'typefabrics', 'typecolors', 'picturefabrics'));
      }
 
 
@@ -74,7 +71,13 @@ class OnprosesController extends Controller
         $fabric->type_colors_id = $request->type_color;
         $fabric->picture_fabrics_id = $request->picture_fabric;
 
-        $fabric->save();
+        // Alert
+        if ($fabric->save()) {
+            Alert::success('Berhasil Menambahkan');
+        } else {
+            Alert::error('Gagal Memperbarui', 'Terjadi kesalahan saat memperbarui karyawan.');
+        }
+
 
         return redirect()->route('onproses.index');
     }

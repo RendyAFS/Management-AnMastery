@@ -73,17 +73,19 @@
         {{-- CONTENT --}}
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
             <div class="row">
-                <div class="col-10">
+                <div class="col-xl-9 col-lg-8 col-md-12">
                     <h1>
                         Tabel Supplier
                     </h1>
                 </div>
 
 
-                <div class="col-2">
-                    <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
-                        Tambah Supplier <i class="bi bi-plus-circle align-middle fs-4 ms-2"></i>
-                    </a>
+                <div class="col-xl-3 col-lg-4 col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
+                            Tambah Supplier <i class="bi bi-plus-circle align-middle fs-4 ms-2"></i>
+                        </a>
+                    </div>
                     <div class="modal fade" id="addSupplierModal" tabindex="-1" aria-labelledby="addSupplierModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">

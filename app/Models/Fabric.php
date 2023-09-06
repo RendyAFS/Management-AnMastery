@@ -11,22 +11,22 @@ class Fabric extends Model
 
     public function supplier()
     {
-        return $this->belongsTo(Supplier::class);
+        return $this->belongsTo(Supplier::class, 'suppliers_id');
     }
 
     public function typefabric()
     {
-        return $this->belongsTo(TypeFabric::class);
+        return $this->belongsTo(TypeFabric::class, 'type_fabrics_id');
     }
 
     public function typecolor()
     {
-        return $this->belongsTo(TypeColor::class);
+        return $this->belongsTo(TypeColor::class, 'type_colors_id');
     }
 
     public function picturefabric()
     {
-        return $this->belongsTo(PictureFabric::class);
+        return $this->belongsTo(PictureFabric::class, 'picture_fabrics_id');
     }
 
     public function payment()
@@ -36,6 +36,7 @@ class Fabric extends Model
 
     public function employee()
     {
-        return $this->belongsTo(Employee::class);
+        return $this->belongsTo(Employee::class,'employees_id');
     }
+
 }
