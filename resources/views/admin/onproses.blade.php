@@ -1,7 +1,9 @@
 @extends('layouts.appadmin')
 {{-- style="border: 1px black solid" --}}
 
-{{-- <style>
+
+@section('content')
+<style>
     @keyframes zoomIn {
     from {
             transform: scale(0);
@@ -20,8 +22,7 @@
         animation-fill-mode: forwards;
     }
 
-</style> --}}
-@section('content')
+</style>
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark position-fixed" style="height: 100vh; overflow-y: auto;">
