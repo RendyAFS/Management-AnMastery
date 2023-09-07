@@ -1,6 +1,7 @@
 @extends('layouts.appadmin')
 {{-- style="border: 1px black solid" --}}
-<style>
+
+{{-- <style>
     @keyframes zoomIn {
     from {
             transform: scale(0);
@@ -12,14 +13,14 @@
         }
     }
 
-    .zoom-in {
+    #anmimasi-card {
         animation-name: zoomIn;
         animation-duration: 0.5s; /* Ubah durasi sesuai kebutuhan */
         animation-timing-function: ease;
         animation-fill-mode: forwards;
     }
 
-</style>
+</style> --}}
 @section('content')
 <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -188,7 +189,7 @@
                                     // Tambahkan pengkondisian lain jika diperlukan
                                 }
                             @endphp
-                            <div class="card text-white {{$bgClass}} mb-3 me-3 border zoom-in " style="max-width: 15rem;">
+                            <div class="card text-white {{$bgClass}} mb-3 me-3 border" id="anmimasi-card" style="max-width: 15rem;">
                                 <div class="card-header">
                                     <h4>
                                         <i class="bi bi-person-fill"></i> {{$fabric->employee->nama_karyawan}}
@@ -207,17 +208,15 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row ">
-                                        <div class="col-lg-12">
-                                            <div class="d-flex justify-content-end">
-                                                <a href="{{ route('onproses.edit', ['onprose' => $fabric->id]) }}" class="btn btn-light me-2" style="height: 39px;">Edit</a>
-                                                <form action="{{ route('onproses.destroy', ['onprose' => $fabric->id]) }}" method="POST">
-                                                    @csrf
-                                                    @method('delete')
-                                                    <button type="submit" class="btn btn-light text-dark" style="height: 39px;">
-                                                        Selesai
-                                                    </button>
-                                                </form>
-                                            </div>
+                                        <div class="col-lg-12 d-flex justify-content-end">
+                                            <a href="{{ route('onproses.edit', ['onprose' => $fabric->id]) }}" class="text-decoration-none btn btn-light me-2">Edit</a>
+                                            <form action="{{ route('onproses.destroy', ['onprose' => $fabric->id]) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-light">
+                                                    Selesai
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -230,4 +229,3 @@
     </div>
 </div>
 @endsection
-
