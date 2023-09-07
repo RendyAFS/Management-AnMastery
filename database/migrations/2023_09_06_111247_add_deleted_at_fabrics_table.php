@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('fabrics_id')->constrained();
-            $table->string('panjang_kain')->nullable();
-            $table->foreignId('price_employees_id')->constrained();
-            $table->timestamps();
+        Schema::table('fabrics', function (Blueprint $table) {
+            $table->softDeletes('deleted_at')->after('picture_fabrics_id');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::table('flights', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

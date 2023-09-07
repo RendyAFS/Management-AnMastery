@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fabric;
+use App\Models\PriceEmployee;
 use Illuminate\Http\Request;
 
 class GajiController extends Controller
@@ -11,7 +13,9 @@ class GajiController extends Controller
      */
     public function index()
     {
-        return view('admin.gaji');
+        $fabrics = Fabric::all();
+        $gajis = PriceEmployee::all();
+        return view('admin.gaji', compact('fabrics','gajis'));
     }
 
     /**
@@ -41,10 +45,12 @@ class GajiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+        $gaji = PriceEmployee::find($id);
+        return view('admin.actions.selesai', compact('gaji'));
     }
+
 
     /**
      * Update the specified resource in storage.
