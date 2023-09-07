@@ -1,4 +1,7 @@
 @extends('layouts.appadmin')
+
+
+@section('content')
 <style>
     /* Misalnya, kita ingin mengubah ukuran checkbox menjadi 1.5 kali lebih besar dari ukuran aslinya */
     input[type="checkbox"] {
@@ -26,20 +29,21 @@
             font-size: 30px;
         }
     }
-    /* #header-edit{
-        background-color: blue;
-    } */
-    /* #header-kalender{
-        background-color: blue;
-    } */
-    /* #header-absen{
-        background-color: blue;
-    } */
+    .animatedC {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
 </style>
-
-
-@section('content')
-<div class="container mt-5">
+<div class="container animatedC mt-5">
     <a href="{{route('absensis.index')}}" class="cancel-button">
         <i class="bi bi-x"></i>
     </a>

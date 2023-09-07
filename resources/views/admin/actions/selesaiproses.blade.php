@@ -1,6 +1,9 @@
 @extends('layouts.appadmin')
 {{-- style="border: 1px black solid" --}}
 
+
+
+@section('content')
 <style>
     /* Gaya umum untuk tabel */
     #fabricTable {
@@ -70,10 +73,6 @@
         }
     }
 </style>
-
-
-
-@section('content')
 <div class="container animatedC">
     <div class="row mt-4">
         <div class="col-lg-8">

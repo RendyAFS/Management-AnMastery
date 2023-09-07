@@ -1,7 +1,21 @@
 @extends('layouts.appadmin')
 
 @section('content')
-<div class="container ">
+<style>
+    .animatedC {
+        animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+<div class="container animatedC">
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
             <div class="card w-50 mt-5">
