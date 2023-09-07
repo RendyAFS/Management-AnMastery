@@ -43,6 +43,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
 
     //OnProses
     Route::resource('onproses', OnprosesController::class);
+    Route::get('selesai', [OnprosesController::class,'selesai'])->name('selesai');
+    Route::get('clearselesai', [OnprosesController::class, 'clearselesai'])->name('clearselesai');
+    Route::get('restore/{id}', [OnprosesController::class, 'restore'])->name('restore');
+
+
 
     //Gaji
     Route::resource('gajis', GajiController::class);

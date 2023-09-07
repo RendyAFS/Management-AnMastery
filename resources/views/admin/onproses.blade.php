@@ -1,5 +1,6 @@
 @extends('layouts.appadmin')
 {{-- style="border: 1px black solid" --}}
+
 @section('content')
 <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -78,14 +79,15 @@
 
                 <div class="col-xl-4 col-lg-4 col-md-12" >
                     <div class="d-flex justify-content-end">
-                        <a href="" class="btn btn-success me-3">
-                            Pengiriman <i class="bi bi-truck align-middle fs-4 ms-2"></i>
+                        <a href="{{route('selesai')}}" class="btn btn-success me-3">
+                            Selesai <i class="bi bi-clipboard-check align-middle fs-4 ms-2"></i>
                         </a>
-
-                        <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProsesModal">
+                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProsesModal">
                             Tambah Proses <i class="bi bi-plus-circle align-middle fs-4 ms-2"></i>
                         </a>
+
                     </div>
+
 
                     <!-- Modal Tambah Supplier -->
                     <div class="modal fade" id="addProsesModal" tabindex="-1" aria-labelledby="addProsesModalLabel" aria-hidden="true">
@@ -102,11 +104,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="row mt-4">
-                <div class="col-lg-4">
+                <div class="col-lg-4 ">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="modal-title">Sisa Kain</h3>
@@ -120,7 +121,7 @@
                                     </p>
                                 </div>
                                 <div class="col-7">
-                                    <p>Sisa Kain: {{ $supplier->jumlah_kain }} Seri</p>
+                                    <p>Sisa Kain: <b>{{ $supplier->jumlah_kain }}</b> Seri</p>
 
                                 </div> <hr>
                                 <div class="none">
@@ -187,11 +188,15 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="row ">
-                                        <div class="col-lg-12 d-grid mb-2">
-                                            <a href="" class="text-decoration-none btn btn-light">Edit</a>
-                                        </div>
-                                        <div class="col-lg-12 d-grid">
-                                            <a href="" class="text-decoration-none btn btn-light">Selesai</a>
+                                        <div class="col-lg-12 d-flex justify-content-end">
+                                            <a href="{{ route('onproses.edit', ['onprose' => $fabric->id]) }}" class="text-decoration-none btn btn-light me-2">Edit</a>
+                                            <form action="{{ route('onproses.destroy', ['onprose' => $fabric->id]) }}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-light">
+                                                    Selesai
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
