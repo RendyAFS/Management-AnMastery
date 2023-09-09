@@ -78,8 +78,8 @@
 
                 <div class="col-xl-2 col-lg-4 col-md-12 " >
                     <div class="d-flex justify-content-end">
-                        <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addKaryawanModal">
-                            Tambah Karyawan <i class="bi bi-plus-circle align-middle fs-4"></i>
+                        <a href="" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addKaryawanModal">
+                            Tambah Karyawan <i class="bi bi-plus-circle align-middle ms-2 fs-4"></i>
                         </a>
                     </div>
                     <div class="modal fade" id="addKaryawanModal" tabindex="-1" aria-labelledby="addKaryawanModalLabel" aria-hidden="true">

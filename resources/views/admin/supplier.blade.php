@@ -82,7 +82,7 @@
 
                 <div class="col-xl-3 col-lg-4 col-md-12">
                     <div class="d-flex justify-content-end">
-                        <a href="" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
+                        <a href="" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
                             Tambah Supplier <i class="bi bi-plus-circle align-middle fs-4 ms-2"></i>
                         </a>
                     </div>
