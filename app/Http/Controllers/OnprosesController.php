@@ -47,24 +47,6 @@ class OnprosesController extends Controller
      */
     public function store(Request $request)
     {
-        // Tentukan pesan kesalahan kustom
-        $messages = [
-            'required' => ':attribute harus diisi.',
-        ];
-
-        // Validasi input menggunakan Validator
-        $validator = Validator::make($request->all(), [
-            'nama_supplier' => 'required',
-            'nama_karyawan' => 'required',
-            'type_fabric' => 'required',
-            'type_color' => 'required',
-            'picture_fabric' => 'required',
-        ], $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
 
         // Validasi berhasil, lanjutkan untuk menyimpan data
         $fabric = new Fabric;
@@ -127,22 +109,6 @@ class OnprosesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Tentukan pesan kesalahan kustom
-        $messages = [
-            'required' => ':attribute harus diisi.',
-        ];
-        // Validasi input menggunakan Validator
-        $validator = Validator::make($request->all(), [
-            'nama_supplier' => 'required',
-            'nama_karyawan' => 'required',
-            'type_fabric' => 'required',
-            'type_color' => 'required',
-            'picture_fabric' => 'required',
-        ], $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
 
         // Ambil data fabric berdasarkan ID
         $fabric = Fabric::findOrFail($id);

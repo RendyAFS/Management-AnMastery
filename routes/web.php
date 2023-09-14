@@ -9,6 +9,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\OnprosesController;
 use App\Http\Controllers\GajiController;
+use App\Http\Controllers\GambarKainController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -57,10 +58,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
 
 
 
-
-
     // Incomee
     Route::resource('incomes', IncomeController::class);
+
+    // Gambar Kain
+    Route::resource('Gkains', GambarKainController::class);
 
 
 

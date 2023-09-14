@@ -17,9 +17,6 @@
                         <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
                     @endforeach
                 </select>
-                @error('nama_supplier')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
             <div class="form-group mt-3">
                 <label for="nama_karyawan">Nama Karyawan:</label>
@@ -29,9 +26,6 @@
                         <option value="{{ $employee->id }}">{{ $employee->nama_karyawan }}</option>
                     @endforeach
                 </select>
-                @error('nama_karyawan')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
             <div class="form-group mt-3">
                 <label for="type_fabric">Jenis Kain:</label>
@@ -41,9 +35,6 @@
                         <option value="{{ $typefabric->id }}">{{ $typefabric->jenis_kain }}</option>
                     @endforeach
                 </select>
-                @error('type_fabric')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
             <div class="form-group mt-3">
                 <label for="type_color">Jenis Warna:</label>
@@ -53,9 +44,6 @@
                         <option value="{{ $typecolor->id }}">{{ $typecolor->jenis_warna }}</option>
                     @endforeach
                 </select>
-                @error('type_color')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
             <div class="form-group mt-3">
                 <label for="picture_fabric">Gambar:</label>
@@ -65,12 +53,7 @@
                         <option value="{{ $picturefabric->id }}">{{ $picturefabric->gambar_kain }}</option>
                     @endforeach
                 </select>
-                @error('picture_fabric')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
-
-
 
 
             {{-- Button --}}

@@ -46,23 +46,6 @@ class AbsensiController extends Controller
      */
     public function store(Request $request)
     {
-        // Mendefinisikan pesan kesalahan untuk validasi input
-        $messages = [
-            'required' => ':attribute harus diisi.',
-            'numeric' => 'Isi :attribute dengan angka.',
-        ];
-
-        // Validasi input menggunakan Validator
-        $validator = Validator::make($request->all(), [
-            'nama_karyawan' => 'required',
-            'umur' => 'numeric',
-            'alamat' => 'required',
-            'nohp' => 'required|numeric',
-        ], $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
 
         // ELOQUENT
         $employee = new Employee;

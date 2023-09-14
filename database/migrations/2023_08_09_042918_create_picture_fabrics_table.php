@@ -16,6 +16,7 @@ class CreatePictureFabricsTable extends Migration
         Schema::create('picture_fabrics', function (Blueprint $table) {
             $table->id();
             $table->string('gambar_kain');
+            $table->string('pic')->nullable();
             $table->timestamps();
         });
     }
