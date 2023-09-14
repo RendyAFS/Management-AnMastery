@@ -13,13 +13,25 @@
                 <label for="detail_proses"> Detail Proses:</label>
                 <select name="detail_proses" id="detail_proses" class="form-select" required>
                     <option value=""></option>
+                    @php
+                        $fabricOptions = [];
+                    @endphp
                     @foreach ($fabrics as $fabric)
-                    <option value="{{ $fabric->id }}"  data-color="{{ $fabric->typecolor->id }}">
-                        {{$fabric->supplier->nama_supplier}} -
-                        {{$fabric->typefabric->jenis_kain}} -
-                        {{$fabric->typecolor->jenis_warna}} -
-                        {{$fabric->picturefabric->gambar_kain}}
-                    </option>
+                        @php
+                            $fabricData = $fabric->supplier->nama_supplier . ' - ' .
+                                          $fabric->typefabric->jenis_kain . ' - ' .
+                                          $fabric->typecolor->jenis_warna . ' - ' .
+                                          $fabric->picturefabric->gambar_kain;
+                        @endphp
+
+                        @if (!in_array($fabricData, $fabricOptions))
+                            <option value="{{ $fabric->id }}" data-color="{{ $fabric->typecolor->id }}">
+                                {{ $fabricData }}
+                            </option>
+                            @php
+                                $fabricOptions[] = $fabricData;
+                            @endphp
+                        @endif
                     @endforeach
                 </select>
             </div>
@@ -28,7 +40,7 @@
                 <select name="harga_kain" id="harga_kain" class="form-select" required>
                     <option value=""></option>
                     @foreach ($gajis as $gaji)
-                    <option {{ $gaji->harga_karyawan }}>
+                    <option value="{{ $gaji->harga_karyawan }}">
                         Rp {{$gaji->harga_karyawan}}
                     </option>
                     @endforeach
@@ -108,8 +120,6 @@
                 <input type="text" name="total_gaji" id="total_gaji" class="form-control" value="Rp 0">
             </div>
 
-
-
             <div class="row mt-4">
                 <div class="col-lg-12">
                     <div class="d-flex justify-content-center">
@@ -117,7 +127,6 @@
                         <button type="button" id="resetTotalGajiButton" class="btn btn-danger ms-2">
                             <i class="bi bi-trash-fill"></i> Hapus
                         </button>
-                        {{-- <button type="button" id="tambah" class="btn btn-success"><i class="bi bi-check-circle"></i> Bonus Abesensi</button> --}}
                     </div>
                 </div>
             </div>
@@ -125,8 +134,6 @@
     </div>
 </div>
 <script>
-
-
     // Function to calculate total gaji
     var currentTotalGaji = 0;
 
@@ -160,6 +167,9 @@
 
         var totalGajiBaru = ((kremValue + blewahValue + jambonValue + biruValue + coklatValue + hijauValue + unguValue + kuningValue) * hargaKaryawanValue) / dataColor;
 
+        // Bulatkan totalGajiBaru ke atas
+        totalGajiBaru = Math.ceil(totalGajiBaru);
+
         // Format totalGajiBaru sebagai mata uang Rupiah dan hapus .00
         var formattedTotal = "Rp " + totalGajiBaru.toLocaleString('id-ID', { minimumFractionDigits: 0 });
 
@@ -171,6 +181,7 @@
             deskripsiTextarea.value = selectedOptionText + " - Total: " + formattedTotal;
         }
     }
+
 
     function addToTotalGaji() {
         var kremValue = parseInt(document.getElementById('krem').value) || 0;
@@ -198,6 +209,8 @@
             var totalGajiBaru = ((kremValue + blewahValue + jambonValue + biruValue + coklatValue + hijauValue + unguValue + kuningValue) * hargaKaryawanValue) / dataColor;
 
             if (!isNaN(totalGajiBaru)) {
+                // Bulatkan totalGajiBaru ke atas
+                totalGajiBaru = Math.ceil(totalGajiBaru);
                 // Tambahkan total gaji baru ke total gaji saat ini
                 currentTotalGaji += totalGajiBaru;
                 var formattedTotalGaji = formatRupiah(currentTotalGaji);
@@ -205,6 +218,7 @@
             }
         }
     }
+
 
     // Add event listener to the "Tambah" button
     document.querySelector('.btn-add').addEventListener('click', function (event) {
@@ -247,8 +261,6 @@
     });
 
 
-
-
     // Function to reset currentTotalGaji to 0
     function resetTotalGaji() {
         currentTotalGaji = 0;
@@ -264,6 +276,9 @@
     function resetTotalGaji() {
         var totalGajiInput = document.getElementById('total_gaji');
         totalGajiInput.value = 'Rp 0'; // Mengatur nilai total gaji menjadi Rp 0
+        var deskripsiInput = document.getElementById('deskripsi');
+        deskripsiInput.value = ''; // Mengatur nilai total gaji menjadi Rp 0
+        currentTotalGaji = 0;
     }
 
     document.getElementById("resetButton").addEventListener("click", function() {

@@ -4,38 +4,26 @@
     @csrf <!-- CSRF token -->
 
     <div class="form-group mt-3">
-        <label for="nama_supplier" class="fw-bold">Nama Supplier</label>
+        <label for="nama_supplier" class="fw-bold">Nama Supplier:</label>
         <input type="text" class="form-control border-dark" id="nama_supplier" name="nama_supplier" value="{{ old('nama_supplier') }}" required>
-        @error('nama_supplier')
-        <div class="text-danger">{{ $message }}</div>
-        @enderror
     </div>
 
     <div class="form-group mt-3">
-        <label for="alamat" class="fw-bold">Alamat</label>
+        <label for="alamat" class="fw-bold">Alamat:</label>
         <textarea class="form-control border-dark" id="alamat" name="alamat" rows="3" required>{{ old('alamat') }}</textarea>
-        @error('alamat')
-        <div class="text-danger">{{ $message }}</div>
-        @enderror
     </div>
 
     <div class="row">
         <div class="col-md-6">
             <div class="form-group mt-3">
-                <label for="HGT" class="fw-bold">HGT</label>
+                <label for="HGT" class="fw-bold">HGT:</label>
                 <input type="number" class="form-control border-dark" id="HGT" name="HGT" value="{{ old('HGT', 0) }}" required>
-                @error('HGT')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group mt-3">
-                <label for="INT" class="fw-bold">INT</label>
+                <label for="INT" class="fw-bold">INT:</label>
                 <input type="number" class="form-control border-dark" id="INT" name="INT" value="{{ old('INT', 0) }}" required>
-                @error('INT')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
         </div>
     </div>
@@ -43,20 +31,14 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group mt-3">
-                <label for="Febri" class="fw-bold">Febri</label>
+                <label for="Febri" class="fw-bold">Febri:</label>
                 <input type="number" class="form-control border-dark" id="Febri" name="Febri" value="{{ old('Febri', 0) }}" required>
-                @error('Febri')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group mt-3">
-                <label for="TC" class="fw-bold">TC</label>
+                <label for="TC" class="fw-bold">TC:</label>
                 <input type="number" class="form-control border-dark" id="TC" name="TC" value="{{ old('TC', 0) }}" required>
-                @error('TC')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
         </div>
     </div>
@@ -64,20 +46,14 @@
     <div class="row">
         <div class="col-md-6">
             <div class="form-group mt-3">
-                <label for="Biasa" class="fw-bold">Biasa</label>
+                <label for="Biasa" class="fw-bold">Biasa:</label>
                 <input type="number" class="form-control border-dark" id="Biasa" name="Biasa" value="{{ old('Biasa', 0) }}" required>
-                @error('Biasa')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
         </div>
         <div class="col-md-6">
             <div class="form-group mt-3">
-                <label for="Lebar" class="fw-bold">Lebar</label>
+                <label for="Lebar" class="fw-bold">Lebar:</label>
                 <input type="number" class="form-control border-dark" id="Lebar" name="Lebar" value="{{ old('Lebar', 0) }}" required>
-                @error('Lebar')
-                <div class="text-danger">{{ $message }}</div>
-                @enderror
             </div>
         </div>
     </div>

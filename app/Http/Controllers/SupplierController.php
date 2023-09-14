@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PictureFabric;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -13,9 +14,10 @@ class SupplierController extends Controller
 
     public function index()
     {
+        $pics = PictureFabric::orderBy('gambar_kain', 'asc')->get();
         // confirmDelete();
         confirmDelete();
-        return view('admin.supplier');
+        return view('admin.supplier',compact('pics'));
     }
 
     public function getData(Request $request)
@@ -46,29 +48,6 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        // Mendefinisikan pesan kesalahan untuk validasi input
-        $messages = [
-            'required' => ':attribute harus diisi.',
-            'numeric' => 'Isi :attribute dengan angka.',
-
-        ];
-
-        // Validasi input menggunakan Validator
-        $validator = Validator::make($request->all(), [
-            'nama_supplier' => 'required',
-            'alamat' => 'required',
-            'HGT' => 'numeric',
-            'INT' => 'numeric',
-            'Febri' => 'numeric',
-            'TC' => 'numeric',
-            'Biasa' => 'numeric',
-            'Lebar' => 'numeric',
-
-        ], $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
         // ELOQUENT
         $supplier = new Supplier;
         $supplier->nama_supplier = $request->nama_supplier;
@@ -117,16 +96,6 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
-            'nama_supplier' => 'required|string',
-            'alamat' => 'required|string',
-            'HGT' => 'required|numeric',
-            'INT' => 'required|numeric',
-            'Febri' => 'required|numeric',
-            'TC' => 'required|numeric',
-            'Biasa' => 'required|numeric',
-            'Lebar' => 'required|numeric',
-        ]);
 
         $supplier = Supplier::findOrFail($id);
         $supplier->nama_supplier = $request->nama_supplier;

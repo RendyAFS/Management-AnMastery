@@ -34,9 +34,6 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('nama_supplier')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
 
                         <div class="form-group mt-3">
@@ -49,9 +46,6 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('nama_karyawan')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
 
                         <div class="form-group mt-3">
@@ -64,9 +58,6 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('type_fabric')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
 
                         <div class="form-group mt-3">
@@ -79,9 +70,6 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('type_color')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
 
                         <div class="form-group mt-3">
@@ -94,9 +82,6 @@
                                     </option>
                                 @endforeach
                             </select>
-                            @error('picture_fabric')
-                            <div class="text-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                         <div class="row mt-4 d-flex justify-content-center">
                             <div class="col-lg-4 d-grid">
