@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('price_suppliers', function (Blueprint $table) {
             $table->id();
-            $table->string('harga_supplier');
+            $table->integer('harga_supplier');
             $table->timestamps();
         });
     }

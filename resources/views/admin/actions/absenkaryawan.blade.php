@@ -19,7 +19,7 @@
         right: 10px;
         font-size: 50px;
         text-decoration: none;
-        color: #dc3545; /* Warna merah untuk ikon "X" */
+        color: black; /* Warna merah untuk ikon "X" */
         z-index: 1;
     }
 

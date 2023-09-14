@@ -22,6 +22,13 @@
         animation-fill-mode: forwards;
     }
 
+    #btn-selesaisemua{
+        padding: 6px
+        display: flex; /* Menggunakan Flexbox */
+        align-items: center; /* Menyelaraskan vertikal ke tengah */
+        justify-content: center; /* Menyelaraskan horizontal ke tengah */
+    }
+
 </style>
 <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -91,20 +98,27 @@
         </div>
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
             <div class="row">
-                <div class="col-xl-8 col-lg-8 col-md-12">
+                <div class="col-xl-4 col-lg-4 col-md-12">
                     <h1>
                         Tabel On Proses
                     </h1>
                 </div>
 
 
-                <div class="col-xl-4 col-lg-4 col-md-12" >
+                <div class="col-xl-8 col-lg-8 col-md-12" >
                     <div class="d-flex justify-content-end">
-                        <a href="{{route('selesai')}}" class="btn btn-success me-3">
-                            Selesai <i class="bi bi-clipboard-check align-middle fs-4 ms-2"></i>
+                        <form action="{{ route('selesaisemua') }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-warning me-3" id="btn-selesaisemua">
+                                <i class="bi bi-clipboard-check  fs-4"></i>
+                            </button>
+                        </form>
+                        <a href="{{route('selesai')}}" class="btn btn-success me-3 d-flex align-items-center">
+                            <i class="bi bi-list-check align-middle fs-4 me-2"></i> Daftar Selesai
                         </a>
-                        <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProsesModal">
-                            Tambah Proses <i class="bi bi-plus-circle align-middle fs-4 ms-2"></i>
+                        <a href="#" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addProsesModal">
+                            <i class="bi bi-plus-circle align-middle fs-4 me-2"></i> Tambah Proses
                         </a>
 
                     </div>
@@ -128,7 +142,7 @@
             </div>
 
             <div class="row mt-4">
-                <div class="col-lg-4 ">
+                <div class="col-lg-4" >
                     <div class="card">
                         <div class="card-header">
                             <h3 class="modal-title">Sisa Kain</h3>
@@ -145,84 +159,70 @@
                                     <p>Sisa Kain: <b>{{ $supplier->jumlah_kain }}</b> Seri</p>
 
                                 </div> <hr>
-                                <div class="none">
-                                    {{-- <div class="col">
-                                        {{ $supplier->HGT }}
-                                    </div>
-                                    <div class="col">
-                                        {{ $supplier->INT }}
-                                    </div>
-                                    <div class="col">
-                                        {{ $supplier->Febri }}
-                                    </div>
-                                    <div class="col">
-                                        {{ $supplier->TC }}
-                                    </div>
-                                    <div class="col">
-                                        {{ $supplier->Lebar }}
-                                    </div>
-                                    <div class="col">
-                                        {{ $supplier->Biasa }}
-                                    </div> --}}
-                                </div>
                             </div>
                             @endforeach
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="row d-flex justify-content-center">
-                        @foreach ($fabrics as $fabric)
-                            @php
-                                $jenisWarna = $fabric->typecolor->jenis_warna;
-                                $bgClass = '';
+                    <div class="row d-flex justify-content-center" >
+                        @if (count($fabrics) === 0)
+                        <div class="text-center" style="height: 85vh; display: flex; justify-content: center; align-items: center; opacity:0.2;">
+                            <h1><i class="bi bi-list-task"></i> Belum ada proses</h1>
+                        </div>
+                        @else
+                            @foreach ($fabrics as $fabric)
+                                @php
+                                    $jenisWarna = $fabric->typecolor->jenis_warna;
+                                    $bgClass = '';
 
-                                switch ($jenisWarna) {
-                                    case '1 Warna':
-                                        $bgClass = 'bg-danger';
-                                        break;
-                                    case '2 Warna':
-                                        $bgClass = 'bg-success';
-                                        break;
-                                    case '3 Warna':
-                                        $bgClass = 'bg-primary';
-                                        break;
-                                    // Tambahkan pengkondisian lain jika diperlukan
-                                }
-                            @endphp
-                            <div class="card text-white {{$bgClass}} mb-3 me-3 border" id="anmimasi-card" style="max-width: 15rem;">
-                                <div class="card-header">
-                                    <h4>
-                                        <i class="bi bi-person-fill"></i> {{$fabric->employee->nama_karyawan}}
-                                    </h4>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">
-                                        <i class="bi bi-layers-fill"></i> {{$fabric->supplier->nama_supplier}}
-                                    </h5>
+                                    switch ($jenisWarna) {
+                                        case '1 Warna':
+                                            $bgClass = 'bg-danger';
+                                            break;
+                                        case '2 Warna':
+                                            $bgClass = 'bg-success';
+                                            break;
+                                        case '3 Warna':
+                                            $bgClass = 'bg-primary';
+                                            break;
+                                        // Tambahkan pengkondisian lain jika diperlukan
+                                    }
+                                @endphp
+                                <div class="card text-white {{$bgClass}} mb-3 me-3 border" id="anmimasi-card" style="max-width: 15rem;">
+                                    <div class="card-header">
+                                        <h4>
+                                            <i class="bi bi-person-fill"></i> {{$fabric->employee->nama_karyawan}}
+                                        </h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <i class="bi bi-layers-fill"></i> {{$fabric->supplier->nama_supplier}}
+                                        </h5>
 
-                                    <p class="card-text">
-                                        <i class="bi bi-dot"></i>{{$fabric->typefabric->jenis_kain}}<br>
-                                        <i class="bi bi-dot"></i>{{$fabric->typecolor->jenis_warna}} <br>
-                                        <i class="bi bi-dot"></i>{{$fabric->picturefabric->gambar_kain}}
-                                    </p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="row ">
-                                        <div class="col-lg-12 d-flex justify-content-end">
-                                            <a href="{{ route('onproses.edit', ['onprose' => $fabric->id]) }}" class="text-decoration-none btn btn-light me-2">Edit</a>
-                                            <form action="{{ route('onproses.destroy', ['onprose' => $fabric->id]) }}" method="POST">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-light">
-                                                    Selesai
-                                                </button>
-                                            </form>
+                                        <p class="card-text">
+                                            <i class="bi bi-dot"></i>{{$fabric->typefabric->jenis_kain}}<br>
+                                            <i class="bi bi-dot"></i>{{$fabric->typecolor->jenis_warna}} <br>
+                                            <i class="bi bi-dot"></i>{{$fabric->picturefabric->gambar_kain}}
+                                        </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="row ">
+                                            <div class="col-lg-12 d-flex justify-content-end">
+                                                <a href="{{ route('onproses.edit', ['onprose' => $fabric->id]) }}" class="text-decoration-none btn btn-light me-2">Edit</a>
+                                                <form action="{{ route('onproses.destroy', ['onprose' => $fabric->id]) }}" method="POST">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="btn btn-light">
+                                                        Selesai
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                        @endif
                     </div>
                 </div>
             </div>

@@ -79,7 +79,7 @@
                 <div class="col-xl-2 col-lg-4 col-md-12 " >
                     <div class="d-flex justify-content-end">
                         <a href="" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addKaryawanModal">
-                            Tambah Karyawan <i class="bi bi-plus-circle align-middle ms-2 fs-4"></i>
+                            <i class="bi bi-plus-circle align-middle me-2 fs-4"></i> Tambah Karyawan
                         </a>
                     </div>
                     <div class="modal fade" id="addKaryawanModal" tabindex="-1" aria-labelledby="addKaryawanModalLabel" aria-hidden="true">
@@ -115,6 +115,7 @@
                                         <th class="text-center">No.</th>
                                         <th class="text-center">Nama Karyawan</th>
                                         <th>Umur</th>
+                                        <th>Total Absensi</th>
                                         <th class="text-center">Alamat</th>
                                         <th class="text-center">Nomor Hp</th>
                                         <th class="text-center">Opsi</th>
@@ -153,18 +154,28 @@
                             return (meta.row + 1) + ".";
                         }
                     },
-                    { data: "nama_karyawan", name: "nama_karyawan", className: 'align-middle', searchable: true },
+                    {
+                        data: "nama_karyawan",
+                        name: "nama_karyawan",
+                        className: 'align-middle',
+                        searchable: true,
+                        render: function(data, type, row, meta) {
+                            // Menambahkan "Tahun" setelah data umur
+                            return " " + data;
+                        }
+                    },
                     {
                         data: "umur",
                         name: "umur",
                         className: 'align-middle text-center',
-                        visible: true,
+                        visible: false,
                         orderable: false,
                         render: function(data, type, row, meta) {
                             // Menambahkan "Tahun" setelah data umur
                             return data + ' Tahun';
                         }
                     },
+                    { data: "total_absensi", name: "total_absensi", visible: true, orderable: true, className: 'align-middle text-center',},
                     { data: "alamat", name: "alamat", visible: false, orderable: false },
                     { data: "nohp", name: "nohp", visible: true, orderable: false, className: 'align-middle text-center' },
                     { data: "actions", name: "actions", orderable: false, searchable: false, width: "5%" },

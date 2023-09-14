@@ -46,11 +46,18 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     Route::get('selesai', [OnprosesController::class,'selesai'])->name('selesai');
     Route::get('clearselesai', [OnprosesController::class, 'clearselesai'])->name('clearselesai');
     Route::get('restore/{id}', [OnprosesController::class, 'restore'])->name('restore');
+    Route::delete('selesaisemua', [OnprosesController::class, 'selesaisemua'])->name('selesaisemua');
+    Route::get('restoreall', [OnprosesController::class, 'restoreall'])->name('restoreall');
 
 
 
     //Gaji
     Route::resource('gajis', GajiController::class);
+    Route::delete('deleteall', [GajiController::class, 'deleteall'])->name('deleteall');
+
+
+
+
 
     // Incomee
     Route::resource('incomes', IncomeController::class);
