@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('price_employees', function (Blueprint $table) {
             $table->id();
-            $table->string('harga_karyawan');
+            $table->integer('harga_karyawan');
             $table->timestamps();
         });
     }

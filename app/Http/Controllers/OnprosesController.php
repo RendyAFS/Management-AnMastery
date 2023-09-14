@@ -10,6 +10,7 @@ use App\Models\Supplier;
 use App\Models\TypeColor;
 use App\Models\TypeFabric;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -196,5 +197,19 @@ class OnprosesController extends Controller
         return redirect()->route('selesai');
     }
 
+    public function selesaisemua()
+    {
+        Fabric::query()->delete(); // Menggunakan soft delete
+        Alert::success('Proses Selesai', 'Proses Pengerjaan Telah Selesai.');
+        return redirect()->route('onproses.index');
+    }
+
+
+    public function restoreall()
+    {
+        Fabric::withTrashed()->restore();
+        Alert::success('Proses Selesai Dikembalikan', 'Proses Pengerjaan Dikembalikan.');
+        return redirect()->route('selesai');
+    }
 
 }

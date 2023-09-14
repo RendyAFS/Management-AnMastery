@@ -10,13 +10,16 @@
         width: 100%;
         border-collapse: collapse;
         margin: 1em 0;
+        border: solid 2px rgba(128, 128, 128, 0.1);
+
     }
 
     #fabricTable th,
     #fabricTable td {
         padding: 8px 10px;
         text-align: left;
-        border-bottom: 1px solid #ddd;
+        border: solid 1px rgba(128, 128, 128, 0.1);
+
     }
 
     /* Gaya untuk baris header */
@@ -30,14 +33,14 @@
     }
 
     #tablecontainer{
-        border: solid 2px rgb(91, 91, 91);
+        border: solid 2px rgba(128, 128, 128, 0.1);
         border-radius: 5px;
         padding: 10px
     }
 
 
     .animated {
-        animation: zoomOut 0.5s ease-in-out;
+        animation: zoomOut 0.35s ease-in-out;
     }
 
     @keyframes zoomOut {
@@ -66,21 +69,23 @@
 </style>
 <div class="container ">
     <div class="row mt-4 ">
-        <div class="col-lg-8">
+        <div class="col-lg-3">
             <h2>
                 List Proses Selesai
             </h2>
         </div>
-        <div class="col-lg-4 d-flex justify-content-end">
-
-            <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#hapus">
-                Hapus Semua <i class="bi bi-trash3-fill ms-2"></i>
-            </button>
-            <a href="{{route('onproses.index')}}" class="btn btn-primary d-flex align-items-center">
-                Kembali <i class="bi bi-arrow-return-left ms-2"></i>
+        <div class="col-lg-9 d-flex justify-content-end">
+            <a href="{{route('restoreall')}}"  class="btn btn-success me-2 d-flex align-items-center" >
+                <i class="bi bi-arrow-counterclockwise me-2"></i> Belum Selesai Semua
             </a>
 
+            <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#hapus">
+                <i class="bi bi-trash3-fill me-2"></i> Hapus Semua
+            </button>
 
+            <a href="{{route('onproses.index')}}" class="btn btn-primary d-flex align-items-center">
+                <i class="bi bi-arrow-return-left me-2"></i> Kembali
+            </a>
 
             <!-- Modal -->
             <div class="modal fade" id="hapus" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="hapusLabel" aria-hidden="true">
@@ -98,14 +103,21 @@
                                 </svg>
                             </div>
                             <h4 class="text-center mt-3">
-                                Apakah Anda Yakin Menghapus Semua Proses
+                                Apakah Anda Yakin <br>
+                                Menghapus Semua Proses?
                             </h4>
                         </div>
-                        <div class="modal-footer">
-                            <a href="{{route('clearselesai')}}" class="btn btn-danger">
-                                Hapus Semua Proses
-                            </a>
-                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Batal</button>
+                        <hr>
+                        {{-- button --}}
+                        <div class="row mb-4">
+                            <div class="col-lg-12">
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{route('clearselesai')}}" class="btn btn-danger me-2">
+                                        Ya, Hapus!
+                                    </a>
+                                    <button type="button" class="btn btn-success ms-2" data-bs-dismiss="modal">Batalkan</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -124,7 +136,9 @@
                             <th>Jenis Kain</th>
                             <th>Jenis Warna</th>
                             <th>Gambar Kain</th>
-                            <th>Action</th>
+                            <th>
+                                Opsi
+                            </th>
                         </tr>
                     </thead>
                     <tbody>

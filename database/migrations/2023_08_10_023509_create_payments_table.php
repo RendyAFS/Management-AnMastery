@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fabrics_id')->constrained();
-            $table->string('panjang_kain')->nullable();
-            $table->foreignId('price_employees_id')->constrained();
+            // $table->foreignId('fabrics_id')->constrained();
+            // $table->foreignId('price_employees_id')->constrained();
+            $table->string('nama')->nullable();
+            $table->string('deskripsi', 10000)->nullable();
+            $table->string('total_gaji');
             $table->timestamps();
+            // $table->string('panjang_kain')->nullable();
         });
     }
 

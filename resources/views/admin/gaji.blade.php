@@ -1,6 +1,61 @@
 @extends('layouts.appadmin')
 
 @section('content')
+<style>
+    /* Gaya umum untuk tabel */
+    #gajiTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1em 0;
+        border: solid 2px rgba(128, 128, 128, 0.1);
+
+    }
+
+    #gajiTable th,
+    #gajiTable td {
+        padding: 8px 10px;
+        text-align: left;
+        border: solid 1px rgba(128, 128, 128, 0.5);
+    }
+
+    /* Gaya untuk baris header */
+    #gajiTable thead tr {
+        background-color: #f2f2f2;
+    }
+
+    /* Gaya untuk baris data */
+    #gajiTable tbody tr:nth-child(even) {
+        background-color: #f5f5f5;
+    }
+
+    #tablecontainer{
+        border: solid 2px rgba(128, 128, 128, 0.1);
+        border-radius: 5px;
+        padding: 10px;
+    }
+    .myTextarea {
+        border: none;
+        resize: none;
+        outline: none;
+        background-color: transparent;
+    }
+    .peringatan {
+        animation: zoomOut 0.35s ease-in-out;
+    }
+
+    @keyframes zoomOut {
+        0% {
+            opacity: 0;
+            transform: scale(1.5);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>
+
+
 <div class="container-fluid">
     <div class="row flex-nowrap">
         <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark position-fixed" style="height: 100vh; overflow-y: auto;">
@@ -68,8 +123,146 @@
             </div>
         </div>
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
-            Gaji Comming Soon...
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <h1>
+                        Gaji Karyawan
+                    </h1>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="d-flex justify-content-end">
+                        <!-- Button trigger modal -->
+                        <a href="" class="btn btn-danger d-flex align-items-center me-2" data-bs-toggle="modal" data-bs-target="#deleteGaji">
+                            <i class="bi bi-trash-fill align-middle fs-4 me-2"></i> Hapus Semua Gaji
+                        </a>
+
+
+                        <a href="" class="btn btn-primary d-flex align-items-center ms-2" data-bs-toggle="modal" data-bs-target="#InputGaji">
+                            <i class="bi bi-credit-card-2-back align-middle fs-4 me-2"></i> Input Gaji
+                        </a>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteGaji" tabindex="-1" aria-labelledby="deleteGajiLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="deleteGajiLabel">Peringatan!!!</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="d-flex justify-content-center peringatan">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" fill="#F68731" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                            <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                                        </svg>
+                                    </div>
+                                    <h4 class="text-center mt-3">
+                                        Apakah Anda Yakin <br>
+                                        Menghapus Semua Gaji Karyawan?
+                                    </h4>
+                                    <hr>
+                                    <div class="row mb-2">
+                                        <div class="col-lg-12">
+                                            <div class="d-flex justify-content-center">
+                                                <form action="{{ route('deleteall') }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger me-2">Ya, Hapus Semua</button>
+                                                </form>
+                                                <button type="button" class="btn btn-success ms-2" data-bs-dismiss="modal">Batalkan</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="InputGaji" tabindex="-1" aria-labelledby="InputGajiLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title" id="InputGajiLabel">Input Gaji</h3>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    @include('admin.actions.inputgaji')
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="container mt-5">
+                <div class="col-lg-12">
+                    <div class="row d-flex justify-content-start" id="tablecontainer">
+                        <table id="gajiTable" class="display">
+                            <thead>
+                                <tr>
+                                    <th>Nama Karyawan</th>
+                                    <th>Deskripsi</th>
+                                    <th>Total Gaji</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($payments as $payment)
+                                    <tr>
+                                        <td class="w-25">{{$payment->nama}}</td>
+                                        <td class="w-50">
+                                            <textarea name="" id="myTextarea{{$loop->index}}" class="myTextarea" cols="80" rows="">{{$payment->deskripsi}}</textarea>
+                                            <script>
+                                                // Fungsi untuk mengatur tinggi textarea
+                                                function setTextareaHeight{{$loop->index}}() {
+                                                    const textarea = document.getElementById("myTextarea{{$loop->index}}");
+                                                    textarea.style.height = "auto"; // Reset tinggi textarea
+
+                                                    // Set tinggi textarea agar sesuai dengan isi teks
+                                                    textarea.style.height = textarea.scrollHeight + "px";
+                                                }
+
+                                                // Panggil fungsi setTextareaHeight saat teks berubah
+                                                document.getElementById("myTextarea{{$loop->index}}").addEventListener("input", setTextareaHeight{{$loop->index}});
+
+                                                // Panggil fungsi setTextareaHeight saat halaman dimuat
+                                                window.addEventListener("load", setTextareaHeight{{$loop->index}});
+                                            </script>
+                                        </td>
+                                        <td class="w-25">{{$payment->total_gaji}}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        $('#gajiTable').DataTable({
+            columnDefs: [
+                {
+                    targets: 0, // Kolom "Nama Karyawan" berada di indeks 0
+                    orderable: true, // Aktifkan pengurutan
+                },
+                {
+                    targets: 1, // Kolom dengan indeks 1
+                    orderable: false, // Menonaktifkan pengurutan
+                    className:'align-middle'
+                },
+                {
+                    targets: 2, // Kolom dengan indeks 2
+                    orderable: true, // Aktifkan pengurutan
+                    className:'align-middle text-center'
+                },
+            ],
+            order: [[0, 'asc']], // Pengurutan awal pada kolom "Nama Karyawan" secara ascending
+        });
+    });
+</script>
 @endsection
