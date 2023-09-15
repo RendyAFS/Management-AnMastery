@@ -21,12 +21,13 @@ class GajiController extends Controller
      */
     public function index()
     {
+        $pageTitle = 'Gaji Karyawan';
         $fabrics = Fabric::onlyTrashed()->orderBy('suppliers_id', 'desc')->get();
         $employees = Employee::all();
         $gajis = PriceEmployee::all();
         $payments = Payment::all();
         return view('admin.gaji',
-        compact('fabrics','gajis','payments', 'employees'));
+        compact('fabrics','gajis','payments', 'employees','pageTitle'));
     }
 
     public function getData(Request $request)

@@ -13,15 +13,6 @@
         display: block;
         margin-bottom: 10px;
     }
-    .cancel-button {
-        position: absolute;
-        top: 1px;
-        right: 10px;
-        font-size: 50px;
-        text-decoration: none;
-        color: black; /* Warna merah untuk ikon "X" */
-        z-index: 1;
-    }
 
     @media only screen and (max-width: 768px) {
         /* Ubah ukuran font menjadi lebih kecil, misalnya, 30px */
@@ -43,13 +34,19 @@
     }
 
 </style>
-<div class="container animatedC mt-5">
-    <a href="{{route('absensis.index')}}" class="cancel-button">
-        <i class="bi bi-x"></i>
-    </a>
+<div class="container animatedC mt-3">
+    <div class="row mb-3">
+        <div class="col-lg-12">
+            <div class="d-flex justify-content-end">
+                <a href="{{route('absensis.index')}}" class="btn btn-primary d-flex align-items-center shadow">
+                    <i class="bi bi-arrow-return-left me-2"></i> Kembali
+                </a>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-lg-4 mx-auto">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header" id="header-edit">
                     <h2 class="modal-title">Edit Karyawan</h2>
                 </div>
@@ -104,7 +101,7 @@
                         <div class="row mt-4">
                             <div class="col-3"></div>
                             <div class="col-6 d-grid">
-                                <button type="submit" class="btn btn-primary ">Edit</button>
+                                <button type="submit" class="btn btn-primary shadow">Edit</button>
                             </div>
                             <div class="col-3"></div>
                         </div>
@@ -144,7 +141,7 @@
                 $translatedMonthName = $monthNames[$monthName];
             @endphp
 
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header" id="header-kalender">
                     <h2 class="modal-title">Kalender</h2>
                 </div>
@@ -157,7 +154,7 @@
                     </h5>
                 </div>
             </div>
-            <div class="card card-lg  mt-4">
+            <div class="card card-lg shadow mt-4">
                 <div class="card-header" id="header-absen">
                     <h2 class="modal-title">Absensi Karyawan</h2>
                 </div>
@@ -226,7 +223,7 @@
                                 <label for="total_absensi" class="fw-bold">Total Absen</label>
                                 <div class="input-group">
                                     <input type="number" class="form-control border-dark" id="totalCheckedInput" name="total_absensi" value="{{ old('total_absensi', $employee->total_absensi) }}" required>
-                                    <button type="button" id="clearTotalChecked" class="btn btn-danger"><i class="bi bi-backspace"></i></button>
+                                    <button type="button" id="clearTotalChecked" class="btn btn-danger shadow"><i class="bi bi-backspace"></i></button>
                                 </div>
                                 @error('total_absensi')
                                 <div class="text-danger">{{ $message }}</div>
@@ -237,7 +234,7 @@
                             <div class="row mt-4">
                                 <div class="col-3"></div>
                                 <div class="col-6 d-grid">
-                                    <button type="submit" class="btn btn-primary">Absen</button>
+                                    <button type="submit" class="btn btn-primary shadow">Absen</button>
                                 </div>
                                 <div class="col-3"></div>
                             </div>

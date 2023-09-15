@@ -1,6 +1,3 @@
-@include('layouts.appadmin')
-
-
 <div class="modal-header">
     <h3 class="modal-title">Edit Supplier</h3>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -70,10 +67,10 @@
         <div class="row mt-4">
             <div class="col-3"></div>
             <div class="col-3 text-center d-grid">
-                <button type="submit" class="btn btn-primary">Edit</button>
+                <button type="submit" class="btn btn-primary shadow">Edit</button>
             </div>
             <div class="col-3 text-center d-grid">
-                <a href="" class="btn btn-danger me-1" data-bs-dismiss="modal" aria-label="Close">Batal</a>
+                <a href="" class="btn btn-danger me-1 shadow" data-bs-dismiss="modal" aria-label="Close">Batal</a>
             </div>
             <div class="col-3"></div>
         </div>

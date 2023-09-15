@@ -15,13 +15,16 @@ class SupplierController extends Controller
     public function index()
     {
         $pics = PictureFabric::orderBy('gambar_kain', 'asc')->get();
-        // confirmDelete();
+        $pageTitle = 'Supplier';
         confirmDelete();
-        return view('admin.supplier',compact('pics'));
+        return view('admin.supplier', compact('pics', 'pageTitle'));
+
     }
+
 
     public function getData(Request $request)
     {
+
         $suppliers = Supplier::all();
 
         if ($request->ajax()) {
@@ -87,8 +90,9 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
+        $pageTitle = 'Supplier';
         $supplier = Supplier::find($id);
-        return view('admin.actions.editsupplier', compact('supplier'));
+        return view('admin.actions.editsupplier', compact('supplier','pageTitle'));
     }
 
     /**

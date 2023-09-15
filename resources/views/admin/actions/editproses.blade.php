@@ -18,7 +18,7 @@
 <div class="container animatedC">
     <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
-            <div class="card w-50 mt-5">
+            <div class="card shadow w-50 mt-5">
                 <h3 class="card-header">Edit Proses</h3>
                 <div class="card-body">
                     <form method="POST" action="{{ route('onproses.update', ['onprose' => $fabric->id]) }}">
@@ -85,10 +85,10 @@
                         </div>
                         <div class="row mt-4 d-flex justify-content-center">
                             <div class="col-lg-4 d-grid">
-                                <button type="submit" class="btn btn-primary mx-2">Edit</button>
+                                <button type="submit" class="btn btn-primary mx-2 shadow">Edit</button>
                             </div>
                             <div class="col-lg-4 d-grid">
-                                <a href="{{route('onproses.index')}}" class="btn btn-danger">Batal</a>
+                                <a href="{{route('onproses.index')}}" class="btn btn-danger shadow">Batal</a>
                             </div>
                         </div>
                     </form>
