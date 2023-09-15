@@ -55,6 +55,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     //Gaji
     Route::resource('gajis', GajiController::class);
     Route::delete('deleteall', [GajiController::class, 'deleteall'])->name('deleteall');
+    Route::get('getgaji', [GajiController::class,'getData'])->name('gaji.getData');
+
 
 
 

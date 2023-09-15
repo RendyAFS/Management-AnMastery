@@ -76,41 +76,45 @@
 
 
                 </div>
-            </div>
+            </div><hr>
             <div class="contaiener mt-5">
                 <div class="row">
-                    <div class="col-lg-5">
-                        <form action="{{ route('incomes.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3>Input Pemasukkan</h3>
-                                </div>
-                                <div class="card-body">
-                                    <label for="uang_kotor" class="fw-bold">Pemasukkan:</label>
-                                    <div class="d-flex">
-                                        @php
-                                            $total_gaji = 0;
-                                        @endphp
-
-                                        @foreach ($payments as $payment)
-                                            {{-- {{$payment->total_gaji}} --}}
-                                            @php
-                                                $total_gaji += $payment->total_gaji;
-                                            @endphp
-                                        @endforeach
-                                        <input type="number" name="uang_kotor" id="uang_kotor" class="form-control w-75 me-3" required>
-                                        <input type="number" name="gaji_karyawan" id="gaji_karyawan" class="form-control w-75 me-3" value="{{ $total_gaji }}" required style="display: none">
-                                        <button type="submit" class="btn btn-primary w-25 ">
-                                            Input
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
                     <div class="col-lg-7">
                         Next Graph Pemasukan ...
+                        <div class="border border-4 rounded-2">
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <div class="mt-5 pt-5">
+                            <form action="{{ route('incomes.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h3>Input Pemasukkan</h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <label for="uang_kotor" class="fw-bold">Pemasukkan:</label>
+                                        <div class="d-flex">
+                                            @php
+                                                $total_gaji = 0;
+                                            @endphp
+
+                                            @foreach ($payments as $payment)
+                                                {{-- {{$payment->total_gaji}} --}}
+                                                @php
+                                                    $total_gaji += $payment->total_gaji;
+                                                @endphp
+                                            @endforeach
+                                            <p class="mt-2 me-1">Rp</p><input type="number" name="uang_kotor" id="uang_kotor" class="form-control w-75 me-3" required>
+                                            <input type="number" name="gaji_karyawan" id="gaji_karyawan" class="form-control w-75 me-3" value="{{ $total_gaji }}" required style="display: none">
+                                            <button type="submit" class="btn btn-primary w-25 ">
+                                                Input
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
                 <div class="row mt-5">
@@ -142,84 +146,82 @@
 @push('scripts')
     <script type="module">
        $(document).ready(function() {
-        $("#tabelincome").DataTable({
-            serverSide: true,
-            processing: true,
-            ajax: "getincomes",
-            columns: [
-                { data: "id", name: "id", visible: false },
-                {
-                    data: "DT_RowIndex",
-                    name: "DT_RowIndex",
-                    orderable: false,
-                    searchable: false,
-                    width: "2%",
-                    className: 'align-middle text-center',
-                    render: function(data, type, row, meta) {
-                        // Mengembalikan nomor indeks dengan titik di depannya
-                        return (meta.row + 1) + ".";
-                    }
-                },
-                {
-                    data: "uang_kotor",
-                    name: "uang_kotor",
-                    className: 'align-middle',
-                    searchable: true,
-                    render: function(data, type, row) {
-                        // Mengubah data menjadi format rupiah
-                        return formatRupiah(data);
-                    }
-                },
-                {
-                    data: "gaji_karyawan",
-                    name: "gaji_karyawan",
-                    className: 'align-middle',
-                    searchable: true,
-                    render: function(data, type, row) {
-                        // Mengubah data menjadi format rupiah
-                        return formatRupiah(data);
-                    }
-                },
-                {
-                    data: "uang_bersih",
-                    name: "uang_bersih",
-                    className: 'align-middle',
-                    searchable: true,
-                    className: 'align-middle text-center',
-                    render: function(data, type, row) {
-                        // Mengubah data menjadi format rupiah
-                        return formatRupiah(data);
-                    }
-                },
-                {
-                    data: "created_at",
-                    name: "created_at",
-                    className: 'align-middle text-center',
-                    searchable: false,
-                    render: function(data, type, row) {
-                        // Mengubah data tanggal ke format nama hari, DD-MM-YYYY
-                        var date = new Date(data);
-                        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                        return date.toLocaleDateString('id-ID', options);
+            $("#tabelincome").DataTable({
+                serverSide: true,
+                processing: true,
+                ajax: "getincomes",
+                columns: [
+                    { data: "id", name: "id", visible: false },
+                    {
+                        data: "DT_RowIndex",
+                        name: "DT_RowIndex",
+                        orderable: false,
+                        searchable: false,
+                        width: "2%",
+                        className: 'align-middle text-center',
+                        render: function(data, type, row, meta) {
+                            // Mengembalikan nomor indeks dengan titik di depannya
+                            return (meta.row + 1) + ".";
+                        }
                     },
-                },
-            ],
-            order: [[0, "desc"]],
-            lengthMenu: [
-                [10, 25, 50, 100, -1],
-                [10, 25, 50, 100, "All"],
-            ],
+                    {
+                        data: "uang_kotor",
+                        name: "uang_kotor",
+                        className: 'align-middle text-center',
+                        searchable: true,
+                        render: function(data, type, row) {
+                            // Mengubah data menjadi format rupiah
+                            return formatRupiah(data);
+                        }
+                    },
+                    {
+                        data: "gaji_karyawan",
+                        name: "gaji_karyawan",
+                        className: 'align-middle text-center',
+                        searchable: true,
+                        render: function(data, type, row) {
+                            // Mengubah data menjadi format rupiah
+                            return formatRupiah(data);
+                        }
+                    },
+                    {
+                        data: "uang_bersih",
+                        name: "uang_bersih",
+                        className: 'align-middle',
+                        searchable: true,
+                        className: 'align-middle text-center',
+                        render: function(data, type, row) {
+                            // Mengubah data menjadi format rupiah
+                            return formatRupiah(data);
+                        }
+                    },
+                    {
+                        data: "created_at",
+                        name: "created_at",
+                        className: 'align-middle text-center',
+                        searchable: false,
+                        render: function(data, type, row) {
+                            // Mengubah data tanggal ke format nama hari, DD-MM-YYYY
+                            var date = new Date(data);
+                            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                            return date.toLocaleDateString('id-ID', options);
+                        },
+                    },
+                ],
+                order: [[0, "desc"]],
+                lengthMenu: [
+                    [10, 25, 50, 100, -1],
+                    [10, 25, 50, 100, "All"],
+                ],
+            });
+
+            // Fungsi untuk mengubah angka menjadi format rupiah
+            function formatRupiah(angka) {
+                var reverse = angka.toString().split('').reverse().join('');
+                var ribuan = reverse.match(/\d{1,3}/g);
+                var hasil = ribuan.join('.').split('').reverse().join('');
+                return "Rp " + hasil;
+            }
         });
-
-        // Fungsi untuk mengubah angka menjadi format rupiah
-        function formatRupiah(angka) {
-            var reverse = angka.toString().split('').reverse().join('');
-            var ribuan = reverse.match(/\d{1,3}/g);
-            var hasil = ribuan.join('.').split('').reverse().join('');
-            return "Rp " + hasil;
-        }
-
-        });
-
     </script>
 @endpush

@@ -29,6 +29,17 @@ class GajiController extends Controller
         compact('fabrics','gajis','payments', 'employees'));
     }
 
+    public function getData(Request $request)
+    {
+        $gaji = Payment::all();
+
+        if ($request->ajax()) {
+            return datatables()->of($gaji)
+                ->addIndexColumn()
+                ->toJson();
+        }
+    }
+
     /**
      * Show the form for creating a new resource.
      */
