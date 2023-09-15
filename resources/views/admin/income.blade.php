@@ -87,7 +87,7 @@
                                     <h3>Input Pemasukkan</h3>
                                 </div>
                                 <div class="card-body">
-                                    <label for="">Pemasukkan:</label>
+                                    <label for="uang_kotor" class="fw-bold">Pemasukkan:</label>
                                     <div class="d-flex">
                                         @php
                                             $total_gaji = 0;
