@@ -96,7 +96,6 @@
                     </h1>
                 </div>
 
-
                 <div class="col-xl-3 col-lg-4 col-md-12">
                     <div class="d-flex justify-content-end">
                         <a href="" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addSupplierModal">
@@ -119,7 +118,7 @@
                     </div>
                 </div>
                 {{-- END FORM --}}
-            </div>
+            </div><hr>
 
 
             {{-- TABEL --}}

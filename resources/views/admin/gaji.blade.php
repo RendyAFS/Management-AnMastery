@@ -52,7 +52,10 @@
             opacity: 1;
             transform: scale(1);
         }
+
     }
+
+
 </style>
 
 
@@ -196,45 +199,21 @@
                 </div>
             </div>
 
-
+            {{-- Table Gaji --}}
             <div class="container mt-5">
                 <div class="col-lg-12">
-                    <div class="row d-flex justify-content-start" id="tablecontainer">
-                        <table id="gajiTable" class="display">
+                    <div class="table-responsive border ps-4 pe-5 pt-3 pb-3 rounded-3">
+                        <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable"
+                        id="tabelgaji">
                             <thead>
                                 <tr>
-                                    <th>Nama Karyawan</th>
-                                    <th>Deskripsi</th>
-                                    <th>Total Gaji</th>
+                                    <th>id</th>
+                                    <th class="text-center">No.</th>
+                                    <th class="text-center" style="width: 200px">Nama Karyawan</th>
+                                    <th >Deskripsi</th>
+                                    <th class="text-center" style="width: 200px">Total Gaji</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($payments as $payment)
-                                    <tr>
-                                        <td class="w-25">{{$payment->nama}}</td>
-                                        <td class="w-50">
-                                            <textarea name="" id="myTextarea{{$loop->index}}" class="myTextarea" cols="80" rows="">{{$payment->deskripsi}}</textarea>
-                                            <script>
-                                                // Fungsi untuk mengatur tinggi textarea
-                                                function setTextareaHeight{{$loop->index}}() {
-                                                    const textarea = document.getElementById("myTextarea{{$loop->index}}");
-                                                    textarea.style.height = "auto"; // Reset tinggi textarea
-
-                                                    // Set tinggi textarea agar sesuai dengan isi teks
-                                                    textarea.style.height = textarea.scrollHeight + "px";
-                                                }
-
-                                                // Panggil fungsi setTextareaHeight saat teks berubah
-                                                document.getElementById("myTextarea{{$loop->index}}").addEventListener("input", setTextareaHeight{{$loop->index}});
-
-                                                // Panggil fungsi setTextareaHeight saat halaman dimuat
-                                                window.addEventListener("load", setTextareaHeight{{$loop->index}});
-                                            </script>
-                                        </td>
-                                        <td class="w-25">Rp {{ number_format($payment->total_gaji, 0, ',', '.') }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -242,7 +221,121 @@
         </div>
     </div>
 </div>
-<script>
+@endsection
+@push('scripts')
+<script type="module">
+    $(document).ready(function() {
+        $("#tabelgaji").DataTable({
+            serverSide: true,
+            processing: true,
+            ajax: "getgaji",
+            columns: [
+                { data: "id", name: "id", visible: false },
+                {
+                    data: "DT_RowIndex",
+                    name: "DT_RowIndex",
+                    orderable: false,
+                    searchable: false,
+                    width: "2%",
+                    className: 'align-middle text-center',
+                    render: function(data, type, row, meta) {
+                        // Mengembalikan nomor indeks dengan titik di depannya
+                        return (meta.row + 1) + ".";
+                    }
+                },
+                {
+                    data: "nama",
+                    name: "nama",
+                    className: 'align-middle',
+                    searchable: true,
+                },
+                {
+                    data: "deskripsi",
+                    name: "deskripsi",
+                    className: 'align-middle ',
+                    searchable: true,
+                    orderable:false,
+                    render: function(data, type, row) {
+                        // Memisahkan deskripsi menjadi baris-baris terpisah
+                        var deskripsiArray = data.split('\n');
+                        var formattedDeskripsi = deskripsiArray.map(function(item) {
+                            return item.trim(); // Menghapus spasi ekstra
+                        }).join('<br>'); // Menggunakan <br> sebagai pemisah
+
+                        return formattedDeskripsi;
+                    }
+                },
+                {
+                    data: "total_gaji",
+                    name: "total_gaji",
+                    className: 'align-middle',
+                    searchable: false,
+                    className: 'align-middle text-center',
+                    render: function(data, type, row) {
+                        // Mengubah data menjadi format rupiah
+                        return formatRupiah(data);
+                    }
+                },
+            ],
+            order: [[0, "desc"]],
+            lengthMenu: [
+                [10, 25, 50, 100, -1],
+                [10, 25, 50, 100, "All"],
+            ],
+        });
+        // Fungsi untuk mengubah angka menjadi format rupiah
+        function formatRupiah(angka) {
+            var reverse = angka.toString().split('').reverse().join('');
+            var ribuan = reverse.match(/\d{1,3}/g);
+            var hasil = ribuan.join('.').split('').reverse().join('');
+            return "Rp " + hasil;
+        }
+    });
+</script>
+
+@endpush
+
+
+{{-- <div class="row d-flex justify-content-start" id="tablecontainer">
+    <table id="gajiTable" class="display">
+        <thead>
+            <tr>
+                <th>Nama Karyawan</th>
+                <th>Deskripsi</th>
+                <th>Total Gaji</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($payments as $payment)
+                <tr>
+                    <td class="w-25">{{$payment->nama}}</td>
+                    <td class="w-50">
+                        <textarea name="" id="myTextarea{{$loop->index}}" class="myTextarea" cols="80" rows="">{{$payment->deskripsi}}</textarea>
+                        <script>
+                            // Fungsi untuk mengatur tinggi textarea
+                            function setTextareaHeight{{$loop->index}}() {
+                                const textarea = document.getElementById("myTextarea{{$loop->index}}");
+                                textarea.style.height = "auto"; // Reset tinggi textarea
+
+                                // Set tinggi textarea agar sesuai dengan isi teks
+                                textarea.style.height = textarea.scrollHeight + "px";
+                            }
+
+                            // Panggil fungsi setTextareaHeight saat teks berubah
+                            document.getElementById("myTextarea{{$loop->index}}").addEventListener("input", setTextareaHeight{{$loop->index}});
+
+                            // Panggil fungsi setTextareaHeight saat halaman dimuat
+                            window.addEventListener("load", setTextareaHeight{{$loop->index}});
+                        </script>
+                    </td>
+                    <td class="w-25">Rp {{ number_format($payment->total_gaji, 0, ',', '.') }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div> --}}
+
+{{-- <script>
     $(document).ready(function() {
         $('#gajiTable').DataTable({
             columnDefs: [
@@ -265,5 +358,4 @@
             order: [[0, 'asc']], // Pengurutan awal pada kolom "Nama Karyawan" secara ascending
         });
     });
-</script>
-@endsection
+</script> --}}

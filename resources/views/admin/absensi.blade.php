@@ -97,9 +97,7 @@
                         </div>
                     </div>
                 </div>
-
-
-                </div>
+            </div><hr>
                 {{-- END FORM --}}
 
                 {{-- TABEL --}}
