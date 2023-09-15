@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Income;
+use App\Models\Payment;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class IncomeController extends Controller
 {
@@ -11,7 +14,21 @@ class IncomeController extends Controller
      */
     public function index()
     {
-        return view('admin.income');
+        $incomes = Income::all();
+        $payments = Payment::all();
+
+        return view('admin.income', compact('incomes', 'payments'));
+    }
+
+    public function getData(Request $request)
+    {
+        $incomes = Income::all();
+
+        if ($request->ajax()) {
+            return datatables()->of($incomes)
+                ->addIndexColumn()
+                ->toJson();
+        }
     }
 
     /**
@@ -27,8 +44,23 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $incomes = new Income();
+        $incomes->uang_kotor = $request->uang_kotor;
+        $incomes->gaji_karyawan = $request->gaji_karyawan;
+
+        // Hitung uang_bersih
+        $incomes->uang_bersih = $incomes->uang_kotor - $incomes->gaji_karyawan;
+
+        // Alert
+        if ($incomes->save()) {
+            Alert::success('Berhasil Menambahkan Pemasukkan');
+        } else {
+            Alert::error('Gagal Memperbarui', 'Terjadi kesalahan saat memperbarui karyawan.');
+        }
+
+        return redirect()->route('incomes.index');
     }
+
 
     /**
      * Display the specified resource.

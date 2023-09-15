@@ -150,21 +150,23 @@
                     </div>
                     <div class="col-lg-12 mt-5">
                         <hr><br>
-                        <div class="row mt-3 mb-2">
+                        <div class="row mt-3 mb-4">
                             <div class="col-lg-4">
-                                <h2>Gambar Kain</h2>
+                                <h2>Daftar Gambar Kain</h2>
                             </div>
                             <div class="col-lg-8">
                                 <div class="d-flex justify-content-end">
                                     <a href="" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addGkainModal">
-                                        <i class="bi bi-plus-circle align-middle fs-4 me-2"></i> Tambah Gambar
+                                        <i class="bi bi-image align-middle fs-4 me-2"></i> Tambah Gambar
                                     </a>
                                 </div>
+
+                                {{-- MODAL TAMBAH Gambar --}}
                                 <div class="modal fade" id="addGkainModal" tabindex="-1" aria-labelledby="addGkainModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h3 class="modal-title" id="addGkainModalLabel">Tambah Supplier</h3>
+                                                <h3 class="modal-title" id="addGkainModalLabel">Tambah Gambar</h3>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div class="modal-body">
@@ -179,7 +181,7 @@
                         <div class="row d-flex justify-content-center">
                             @foreach ($pics as $pic )
                                 <div class="card m-2" style="max-width: 18rem;">
-                                    <img src="{{ asset('storage/gambar_kain/' . $pic->pic) }}" class="card-img-top" alt="gambar {{$pic->gambar_kain}}"
+                                    <img src="{{ asset('storage/gambar_kain/' . $pic->pic) }}" class="card-img-top mt-2" alt="gambar {{$pic->gambar_kain}}"
                                     style="max-width: 18rem; max-height:12rem;" >
                                     <div class="card-body">
                                         <h5 class="card-title">

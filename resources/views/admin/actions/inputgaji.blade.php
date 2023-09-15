@@ -117,7 +117,7 @@
 
             <label for="total_gaji">Total Gaji:</label>
             <div class="d-flex">
-                <input type="text" name="total_gaji" id="total_gaji" class="form-control" value="Rp 0">
+                <p class="mt-2 me-1">Rp </p><input type="text" name="total_gaji" id="total_gaji" class="form-control" value="0">
             </div>
 
             <div class="row mt-4">
@@ -213,12 +213,11 @@
                 totalGajiBaru = Math.ceil(totalGajiBaru);
                 // Tambahkan total gaji baru ke total gaji saat ini
                 currentTotalGaji += totalGajiBaru;
-                var formattedTotalGaji = formatRupiah(currentTotalGaji);
-                totalGajiInput.value = "Rp " + formattedTotalGaji; // Update total gaji dengan format rupiah
+                var formattedTotalGaji = (currentTotalGaji);
+                totalGajiInput.value =formattedTotalGaji; // Update total gaji dengan format rupiah
             }
         }
     }
-
 
     // Add event listener to the "Tambah" button
     document.querySelector('.btn-add').addEventListener('click', function (event) {
@@ -242,17 +241,17 @@
         var currentTotalGaji = parseInt(totalGajiInput.value.replace(/\D/g, '')) || 0;
 
         var updatedTotalGaji = currentTotalGaji + dataAbsensi;
-        var formattedTotalGaji = formatRupiah(updatedTotalGaji);
+        var formattedTotalGaji = (updatedTotalGaji);
 
         // Format nilai gaji total dalam format rupiah tanpa .00 dan tanpa simbol Rp
-        totalGajiInput.value = "Rp " + formattedTotalGaji;
+        totalGajiInput.value =formattedTotalGaji;
 
         var deskripsiTextarea = document.getElementById('deskripsi');
         if (deskripsiTextarea.value.length > 0) {
             // Tambahkan baris baru dan total gaji sebelum menambahkan teks opsi yang dipilih
-            deskripsiTextarea.value += "\n" + "\n" + "Bonus Absensi: Rp " + formatRupiah(dataAbsensi);
+            deskripsiTextarea.value += "\n" + "\n" + "Bonus Absensi: Rp " + (dataAbsensi);
         } else {
-            deskripsiTextarea.value = "Bonus Absensi: Rp " + formatRupiah(dataAbsensi);
+            deskripsiTextarea.value = "Bonus Absensi: Rp " + (dataAbsensi);
         }
     }
 
@@ -275,7 +274,7 @@
 
     function resetTotalGaji() {
         var totalGajiInput = document.getElementById('total_gaji');
-        totalGajiInput.value = 'Rp 0'; // Mengatur nilai total gaji menjadi Rp 0
+        totalGajiInput.value = '0'; // Mengatur nilai total gaji menjadi Rp 0
         var deskripsiInput = document.getElementById('deskripsi');
         deskripsiInput.value = ''; // Mengatur nilai total gaji menjadi Rp 0
         currentTotalGaji = 0;
@@ -292,5 +291,6 @@
         document.getElementById("ungu").value = "0";
         document.getElementById("kuning").value = "0";
     });
+
 
 </script>
