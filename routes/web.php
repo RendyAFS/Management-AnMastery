@@ -60,6 +60,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
 
     // Incomee
     Route::resource('incomes', IncomeController::class);
+    Route::get('getincomes', [IncomeController::class,'getData'])->name('incomes.getData');
+
 
     // Gambar Kain
     Route::resource('Gkains', GambarKainController::class);

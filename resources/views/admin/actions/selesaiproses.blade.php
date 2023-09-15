@@ -192,14 +192,20 @@
                 {
                     targets: 1, // Kolom dengan indeks 1
                     orderable: true, // Menonaktifkan pengurutan
+                    searchable:false,
+
                 },
                 {
                     targets: 2, // Kolom dengan indeks 2
                     orderable: true, // Aktifkan pengurutan
+                    searchable:false,
+
                 },
                 {
                     targets: 3, // Kolom dengan indeks 3
                     orderable: true, // Menonaktifkan pengurutan
+                    searchable:false,
+
                 },
                 {
                     targets: 4, // Kolom dengan indeks 4

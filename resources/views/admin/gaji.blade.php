@@ -231,7 +231,7 @@
                                                 window.addEventListener("load", setTextareaHeight{{$loop->index}});
                                             </script>
                                         </td>
-                                        <td class="w-25">{{$payment->total_gaji}}</td>
+                                        <td class="w-25">Rp {{ number_format($payment->total_gaji, 0, ',', '.') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -249,6 +249,7 @@
                 {
                     targets: 0, // Kolom "Nama Karyawan" berada di indeks 0
                     orderable: true, // Aktifkan pengurutan
+                    className:'align-middle text-center'
                 },
                 {
                     targets: 1, // Kolom dengan indeks 1

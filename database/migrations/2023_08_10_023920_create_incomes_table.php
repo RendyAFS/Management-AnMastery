@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('price_suppliers_id')->constrained();
-            $table->foreignId('payments_id')->constrained();
+            $table->string('uang_kotor');
+            $table->string('gaji_karyawan');
+            $table->string('uang_bersih');
             $table->timestamps();
         });
     }

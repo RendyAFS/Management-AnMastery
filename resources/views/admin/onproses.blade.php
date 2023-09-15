@@ -107,18 +107,18 @@
 
                 <div class="col-xl-8 col-lg-8 col-md-12" >
                     <div class="d-flex justify-content-end">
-                        <form action="{{ route('selesaisemua') }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-warning me-3" id="btn-selesaisemua">
-                                <i class="bi bi-clipboard-check  fs-4"></i>
-                            </button>
-                        </form>
                         <a href="{{route('selesai')}}" class="btn btn-success me-3 d-flex align-items-center">
                             <i class="bi bi-list-check align-middle fs-4 me-2"></i> Daftar Selesai
                         </a>
+                        <form action="{{ route('selesaisemua') }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-warning d-flex align-middle me-3" id="btn-selesaisemua">
+                                <i class="bi bi-clipboard-check me-2 fs-4"></i> Selesai Semua
+                            </button>
+                        </form>
                         <a href="#" class="btn btn-primary d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#addProsesModal">
-                            <i class="bi bi-plus-circle align-middle fs-4 me-2"></i> Tambah Proses
+                            <i class="bi bi-file-earmark-plus align-middle fs-4 me-2"></i> Tambah Proses
                         </a>
 
                     </div>
