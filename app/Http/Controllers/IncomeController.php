@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\IncomesChart;
 use App\Models\Income;
 use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class IncomeController extends Controller
@@ -12,12 +14,16 @@ class IncomeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(IncomesChart $chart)
     {
+        $pageTitle = 'Incomes';
         $incomes = Income::all();
         $payments = Payment::all();
 
-        return view('admin.income', compact('incomes', 'payments'));
+        return view('admin.income',
+        compact('incomes', 'payments', 'pageTitle'),
+        ['chart' => $chart->build()]
+        );
     }
 
     public function getData(Request $request)
@@ -92,5 +98,11 @@ class IncomeController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function deletealli()
+    {
+        DB::table('incomes')->delete();
+        return redirect()->route('incomes.index');
     }
 }

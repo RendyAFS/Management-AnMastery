@@ -78,8 +78,8 @@
         <div class="row mt-2">
             <div class="col-lg-12">
                 <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn btn-primary btn-add me-2"><i class="bi bi-cart-plus"></i> Masukkan</button>
-                    <button class="btn btn-danger ms-2" id="resetButton"> <i class="bi bi-trash3-fill"></i> Panjang Kain </button>
+                    <button type="submit" class="btn btn-primary btn-add me-2 shadow"><i class="bi bi-cart-plus"></i> Masukkan</button>
+                    <button class="btn btn-danger ms-2 shadow" id="resetButton"> <i class="bi bi-trash3-fill"></i> Panjang Kain </button>
                 </div>
             </div>
         </div>
@@ -123,8 +123,8 @@
             <div class="row mt-4">
                 <div class="col-lg-12">
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="btn btn-primary me-2" id="tambah"  ><i class="bi bi-database-fill-up"></i> Tambah</button>
-                        <button type="button" id="resetTotalGajiButton" class="btn btn-danger ms-2">
+                        <button type="submit" class="btn btn-primary me-2 shadow" id="tambah"  ><i class="bi bi-database-fill-up"></i> Tambah</button>
+                        <button type="button" id="resetTotalGajiButton" class="btn btn-danger ms-2 shadow">
                             <i class="bi bi-trash-fill"></i> Hapus
                         </button>
                     </div>

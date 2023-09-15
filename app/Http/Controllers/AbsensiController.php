@@ -14,8 +14,9 @@ class AbsensiController extends Controller
      */
     public function index()
     {
+        $pageTitle = 'Daftar Karyawan';
         confirmDelete();
-        return view('admin.absensi');
+        return view('admin.absensi',compact('pageTitle'));
     }
 
     public function getData(Request $request)
@@ -76,16 +77,12 @@ class AbsensiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        $employee = Employee::find($id);
-        return view('admin.actions.editkaryawan', compact('employee'));
-    }
 
     public function absensi(string $id)
     {
+        $pageTitle = 'Absensi Karayawan';
         $employee = Employee::find($id);
-        return view('admin.actions.absenkaryawan', compact('employee'));
+        return view('admin.actions.absenkaryawan', compact('employee', 'pageTitle'));
     }
 
     /**

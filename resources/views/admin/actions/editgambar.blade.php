@@ -17,17 +17,19 @@
         {{-- {{ old('HGT', $pic->pic) }} --}}
         <div class="form-group mt-3">
             <label for="pic" class="fw-bold">Foto Gambar:</label>
-            <input type="file" class="form-control border-dark" id="pic" name="pic" value="{{ old('pic', $pic->pic) }}">
+            <input type="file" class="form-control border-dark @error('pic') is-invalid @enderror" id="pic" name="pic" value="{{ old('pic', $pic->pic) }}">
         </div>
-
+        @error('pic')
+            <small class="text-danger text-left">{{ $message }}</small>
+        @enderror
 
         <div class="row mt-4">
             <div class="col-3"></div>
             <div class="col-3 d-grid">
-                <button type="submit" class="btn btn-primary ">Edit</button>
+                <button type="submit" class="btn btn-primary shadow">Edit</button>
             </div>
             <div class="col-3 d-grid">
-                <a href="" class="btn btn-danger me-1" data-bs-dismiss="modal" aria-label="Close">
+                <a href="" class="btn btn-danger me-1 shadow" data-bs-dismiss="modal" aria-label="Close">
                     Batal
                 </a>
             </div>

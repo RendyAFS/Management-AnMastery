@@ -75,19 +75,19 @@
             </h2>
         </div>
         <div class="col-lg-9 d-flex justify-content-end">
-            <a href="{{route('restoreall')}}"  class="btn btn-success me-2 d-flex align-items-center" >
+            <a href="RestoreAll"  class="btn btn-success me-2 d-flex align-items-center shadow" data-bs-toggle="modal" data-bs-target="#restoreall">
                 <i class="bi bi-arrow-counterclockwise me-2"></i> Belum Selesai Semua
             </a>
 
-            <button type="button" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#hapus">
+            <button type="button" class="btn btn-danger me-2 shadow" data-bs-toggle="modal" data-bs-target="#hapus">
                 <i class="bi bi-trash3-fill me-2"></i> Hapus Semua
             </button>
 
-            <a href="{{route('onproses.index')}}" class="btn btn-primary d-flex align-items-center">
+            <a href="{{route('onproses.index')}}" class="btn btn-primary d-flex align-items-center shadow">
                 <i class="bi bi-arrow-return-left me-2"></i> Kembali
             </a>
 
-            <!-- Modal -->
+            <!-- Modal Hapus -->
             <div class="modal fade" id="hapus" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="hapusLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -112,23 +112,61 @@
                         <div class="row mb-4">
                             <div class="col-lg-12">
                                 <div class="d-flex justify-content-center">
-                                    <a href="{{route('clearselesai')}}" class="btn btn-danger me-2">
+                                    <a href="{{route('clearselesai')}}" class="btn btn-danger me-2 shadow">
                                         Ya, Hapus!
                                     </a>
-                                    <button type="button" class="btn btn-success ms-2" data-bs-dismiss="modal">Batalkan</button>
+                                    <button type="button" class="btn btn-success ms-2 shadow" data-bs-dismiss="modal">Batalkan</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Modal restoreall -->
+            <div class="modal fade" id="restoreall" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="restoreallLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-3" id="restoreallLabel">Peringatan !!!</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="d-flex justify-content-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="#F68731" class="bi bi-exclamation-circle animated" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-center mt-3">
+                                Apakah Anda Yakin <br>
+                                Mengembalikan Semua Proses?
+                            </h4>
+                        </div>
+                        <hr>
+                        {{-- button --}}
+                        <div class="row mb-4">
+                            <div class="col-lg-12">
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{route('restoreall')}}" class="btn btn-danger me-2 shadow">
+                                        Ya, Kembalikan!
+                                    </a>
+                                    <button type="button" class="btn btn-success ms-2 shadow" data-bs-dismiss="modal">Batalkan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
     </div>
 
     <div class="row mt-5 animatedC  ">
         <div class="col-lg-12">
-            <div class="row d-flex justify-content-start" id="tablecontainer">
-                <table id="fabricTable" class="display">
+            <div class="row d-flex justify-content-start shadow" id="tablecontainer">
+                <table id="fabricTable" class="display shadow">
                     <thead>
                         <tr>
                             <th>Nama Karyawan</th>

@@ -21,7 +21,7 @@ class OnprosesController extends Controller
      */
     public function index(Request $request)
     {
-
+        $pageTitle = 'OnProses';
         $suppliers = Supplier::orderBy('nama_supplier', 'asc')->get(); // Mengambil semua data supplier
         $employees = Employee::orderBy('nama_karyawan', 'asc')->get(); // Mengambil semua data karyawan
         $typefabrics = TypeFabric::all(); // Mengambil semua data jenis kain
@@ -29,7 +29,7 @@ class OnprosesController extends Controller
         $picturefabrics = PictureFabric::orderBy('gambar_kain', 'asc')->get(); // Mengambil semua data gambar kain
         $fabrics = Fabric::all();
         return view('admin.onproses',
-        compact('suppliers', 'employees', 'typefabrics', 'typecolors', 'picturefabrics', 'fabrics'));
+        compact('suppliers', 'employees', 'typefabrics', 'typecolors', 'picturefabrics', 'fabrics','pageTitle'));
     }
 
     /**
@@ -79,6 +79,7 @@ class OnprosesController extends Controller
      */
     public function edit(string $id)
     {
+        $pageTitle = 'Edit Proses';
         // Ambil data fabric berdasarkan ID
         $fabric = Fabric::find($id);
 
@@ -101,7 +102,9 @@ class OnprosesController extends Controller
         'selectedEmployeeId',
         'selectedTypeFabricId',
         'selectedTypeColorId',
-        'selectedPictureFabricId'));
+        'selectedPictureFabricId',
+        'pageTitle'
+        ));
     }
 
     /**
@@ -145,9 +148,10 @@ class OnprosesController extends Controller
     }
 
     public function selesai(){
+        $pageTitle = 'Proses Selesai';
         $fabrics = Fabric::onlyTrashed()->get();
 
-        return view('admin.actions.selesaiproses', compact('fabrics'));
+        return view('admin.actions.selesaiproses', compact('fabrics','pageTitle'));
     }
 
     public function clearselesai()

@@ -6,7 +6,7 @@
 </head>
 <body>
     <div class="d-flex justify-content-center">
-        <a href="#" class="btn btn-outline-primary me-2 edit-btn" data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{ $supplier->id }}">
+        <a href="EditSupplier" class="btn btn-outline-primary me-2 edit-btn shadow" data-bs-toggle="modal" data-bs-target="#editModal" data-id="{{ $supplier->id }}">
             <i class="bi bi-pencil-square fs-6"></i>
         </a>
 
@@ -24,7 +24,7 @@
                 class="your-form-class" data-nama_supplier="{{ $supplier->nama_supplier }}">
               @csrf
               @method('delete')
-              <button type="submit" class="btn btn-outline-danger btn-delete">
+              <button type="submit" class="btn btn-outline-danger btn-delete shadow">
                   <i class="bi bi-trash-fill fs-6"></i>
               </button>
           </form>

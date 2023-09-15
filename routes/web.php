@@ -63,6 +63,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
     // Incomee
     Route::resource('incomes', IncomeController::class);
     Route::get('getincomes', [IncomeController::class,'getData'])->name('incomes.getData');
+    Route::delete('deletealli', [IncomeController::class, 'deletealli'])->name('deletealli');
 
 
     // Gambar Kain
