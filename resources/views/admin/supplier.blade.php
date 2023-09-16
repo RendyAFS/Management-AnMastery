@@ -23,6 +23,9 @@
 
         {{-- CONTENT --}}
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
+            <div id="gambar_kain2" style="z-index: 1; position:absolute; top:116vh">
+                <h1 style="display: none">TES</h1>
+            </div>
             <div class="row">
                 <div class="col-xl-6 col-lg-4 col-md-12">
                     <h1>
@@ -125,20 +128,26 @@
                                         <h5 class="card-title">
                                             {{$pic->gambar_kain}}
                                         </h5>
-                                        <a href="EditGambar" class="btn btn-primary editg-btn shadow" data-bs-toggle="modal" data-bs-target="#editgambar" data-id="{{ $pic->id }}">Edit</a>
+                                        <a href="EditGambar" class="btn btn-primary editg-btn shadow" data-bs-toggle="modal" data-bs-target="#editgambar" data-id="{{ $pic->id }}">
+                                            Edit
+                                        </a>
                                         <a href="DeleteGambar" type="button" class="btn btn-danger shadow" data-bs-toggle="modal" data-bs-target="#delgambar">Hapus</a>
 
                                     </div>
+
                                 </div>
-                            @endforeach
-                            <!-- Modal edit -->
+                             @endforeach
+
+                                <!-- Modal edit -->
                             <div class="modal fade" id="editgambar" tabindex="-1" aria-labelledby="editgambarLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        @include('admin/actions/editgambar')
+                                        @include('admin.actions.editgambar')
                                     </div>
                                 </div>
                             </div>
+
+
                             <!-- Modal Hapus -->
                             <div class="modal fade" id="delgambar" tabindex="-1" aria-labelledby="delgambarLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -246,10 +255,10 @@
                 });
             });
         });
-
         $(document).ready(function() {
             $('.editg-btn').on('click', function() {
                 var id = $(this).data('id');
+                console.log(id);
                 $.ajax({
                     url: "{{ route('Gkains.edit', ['Gkain' => ':id']) }}".replace(':id', id),
                     method: 'GET',
@@ -259,6 +268,7 @@
                 });
             });
         });
+
     </script>
 @endpush
 

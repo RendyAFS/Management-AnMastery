@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Charts\IncomesDashboardChart;
+use App\Charts\JumlahKainChart;
+use App\Models\Employee;
+use App\Models\PictureFabric;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -9,10 +13,20 @@ class DashboardController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+
+    public function index(JumlahKainChart $chartkain, IncomesDashboardChart $chartincome)
     {
+
         $pageTitle = 'Dashboard';
-        return view('admin.dashboard',compact('pageTitle'));
+        $pics = PictureFabric::all();
+        $employees = Employee::all();
+        return view('admin.dashboard',
+        compact('pageTitle', 'pics', 'employees'),
+        [
+            'chartkain' => $chartkain->build(),
+            'chartincome' => $chartincome->build()
+        ],
+        );
     }
 
     /**
