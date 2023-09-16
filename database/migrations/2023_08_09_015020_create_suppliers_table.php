@@ -17,13 +17,13 @@ class CreateSuppliersTable extends Migration
             $table->id();
             $table->string('nama_supplier');
             $table->string('alamat');
-            $table->integer('jumlah_kain')->default(0);
-            $table->integer('HGT')->default(0);
-            $table->integer('INT')->default(0);
-            $table->integer('Febri')->default(0);
-            $table->integer('TC')->default(0);
-            $table->integer('Biasa')->default(0);
-            $table->integer('Lebar')->default(0);
+            $table->string('jumlah_kain')->default(0);
+            $table->string('HGT')->default(0);
+            $table->string('INT')->default(0);
+            $table->string('Febri')->default(0);
+            $table->string('TC')->default(0);
+            $table->string('Biasa')->default(0);
+            $table->string('Lebar')->default(0);
             $table->timestamps();
         });
     }

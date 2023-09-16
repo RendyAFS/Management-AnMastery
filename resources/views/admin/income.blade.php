@@ -151,8 +151,8 @@
 @endsection
 @push('scripts')
 <script src="{{ $chart->cdn() }}"></script>
-
 {{ $chart->script() }}
+
     <script type="module">
        $(document).ready(function() {
             $("#tabelincome").DataTable({
