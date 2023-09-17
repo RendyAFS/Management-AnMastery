@@ -32,9 +32,8 @@
                 opacity: 1;
             }
         }
-
     </style>
-    <div class="container-fluid">
+    <div class="container-fluid mb-5">
         <div class="row flex-nowrap">
             @include('layouts.navbar1')
 
@@ -109,17 +108,31 @@
                         <div class="col-lg-12 mt-5 animasi">
                             <hr id="gambar_kain"><br>
                             <div class="row mt-3 mb-4">
-                                <div class="col-lg-4">
-                                    <h2>Daftar Gambar Kain</h2>
+                                <div class="bg-judul p-2" style="width: 30%">
+                                    <h2 class="ms-2">Daftar Gambar Kain</h2>
                                 </div>
                                 <div class="col-lg-8">
                                     <div class="d-flex justify-content-end">
-                                        <a href="TambahGambar" class="btn btn-primary d-flex align-items-center shadow"
-                                            data-bs-toggle="modal" data-bs-target="#addGkainModal">
-                                            <i class="bi bi-image align-middle fs-4 "></i>
-                                            <i class="bi bi-plus align-middle fs-4 me-2"></i>
-                                            Tambah Gambar
-                                        </a>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="d-flex justify-content-center align-items-center">
+                                                    <label for="searchInputImages" class="me-2 fw-bold">Search:</label>
+                                                    <input type="text" id="searchInputImages" class="form-control shadow">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <a href="TambahGambar"
+                                                    class="btn btn-primary d-flex align-items-center shadow"
+                                                    data-bs-toggle="modal" data-bs-target="#addGkainModal">
+                                                    <i class="bi bi-image align-middle fs-4 "></i>
+                                                    <i class="bi bi-plus align-middle fs-4 me-2"></i>
+                                                    Tambah Gambar
+                                                </a>
+                                            </div>
+
+                                        </div>
+
+
                                     </div>
 
                                     {{-- MODAL TAMBAH Gambar --}}
@@ -158,9 +171,7 @@
                                             </a>
                                             <a href="DeleteGambar" type="button" class="btn btn-danger shadow"
                                                 data-bs-toggle="modal" data-bs-target="#delgambar">Hapus</a>
-
                                         </div>
-
                                     </div>
                                 @endforeach
 
@@ -370,6 +381,26 @@
                     method: 'GET',
                     success: function(response) {
                         $('#editgambar .modal-content').html(response);
+                    }
+                });
+            });
+        });
+        $(document).ready(function() {
+            // Get all cards
+            var cards = $(".card");
+
+            // Handle input change event
+            $("#searchInputImages").on("input", function() {
+                var searchText = $(this).val().toLowerCase();
+
+                cards.each(function() {
+                    var cardText = $(this).find(".card-title").text().toLowerCase();
+
+                    // Show the card if it contains the search text, hide it otherwise
+                    if (cardText.includes(searchText)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
                     }
                 });
             });
