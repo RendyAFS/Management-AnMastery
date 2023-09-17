@@ -66,6 +66,11 @@
             opacity: 1;
         }
     }
+    #th{
+        background-color: #393E46;
+        color: #EEEEEE
+    }
+
 </style>
 <div class="container ">
     <div class="row mt-4 ">
@@ -169,12 +174,12 @@
                 <table id="fabricTable" class="display shadow">
                     <thead>
                         <tr>
-                            <th>Nama Karyawan</th>
-                            <th>Nama Supplier</th>
-                            <th>Jenis Kain</th>
-                            <th>Jenis Warna</th>
-                            <th>Gambar Kain</th>
-                            <th>
+                            <th id="th">Nama Karyawan</th>
+                            <th id="th">Nama Supplier</th>
+                            <th id="th">Jenis Kain</th>
+                            <th id="th">Jenis Warna</th>
+                            <th id="th">Gambar Kain</th>
+                            <th id="th">
                                 Opsi
                             </th>
                         </tr>

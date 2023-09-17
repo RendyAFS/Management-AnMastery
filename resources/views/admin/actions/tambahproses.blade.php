@@ -1,4 +1,3 @@
-@include('layouts.appadmin')
 <style>
     label{
         font-weight: bold;

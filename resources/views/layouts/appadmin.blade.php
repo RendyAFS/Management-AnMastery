@@ -19,7 +19,51 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
+    <style>
+        body{
+            background-color: #EEEEEE
+        }
+        .bg-judul{
+            display: inline-block;
+            background-color:#00ADB5;
+            color: white;
+            width: 20%;
+            border-radius: 10px
+        }
+        .btn-primary{
+            background-color: #187498;
+            border: none;
+        }
+        .btn-primary:hover{
+            background-color: #1d3b6a;
+            border: none;
+        }
+        .btn-success{
+            background-color: #36AE7C;
+            border: none;
+        }
+        .btn-success:hover{
+            background-color: #277b58;
+            border: none;
+        }
+        .btn-danger{
+            background-color: #EB5353;
+            border: none;
+        }
+        .btn-danger:hover{
+            background-color: #6e1717;
+            border: none;
+        }
+        .btn-warning{
+            background-color: #F9D923;
+            border: none;
+        }
+        .btn-warning:hover{
+            background-color: #7b6e24;
+            border: none;
+            color: white
+        }
+    </style>
 
 </head>
 <body>

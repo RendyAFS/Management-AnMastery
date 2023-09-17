@@ -14,6 +14,16 @@
             opacity: 1;
         }
     }
+    .card-header
+    {
+        background-color: #393E46;
+        color: #EEEEEE
+    }
+    #th{
+        background-color: #00ADB5;
+        color: #EEEEEE
+    }
+
 </style>
 <div class="container animatedC">
     <div class="row">

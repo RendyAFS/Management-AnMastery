@@ -1,6 +1,12 @@
 @extends('layouts.appadmin')
 
 @section('content')
+<style>
+    #th{
+        background-color: #393E46;
+        color: #EEEEEE
+    }
+</style>
 <div class="container-fluid">
     <div class="row flex-nowrap">
         @include('layouts.navbar2')
@@ -8,9 +14,9 @@
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
             <div class="row">
                 <div class="col-xl-10 col-lg-8 col-md-12">
-                    <h1>
-                        Tabel Absensi
-                    </h1>
+                    <div class="bg-judul p-2" style="width: 30%">
+                        <h1 class="ms-2">Tabel Absensi</h1>
+                    </div>
                 </div>
 
 
@@ -47,14 +53,14 @@
                             id="tabelemployee">
                                 <thead>
                                     <tr class="text-center">
-                                        <th>id</th>
-                                        <th class="text-center">No.</th>
-                                        <th class="text-center">Nama Karyawan</th>
+                                        <th >id</th>
+                                        <th class="text-center" id="th">No.</th>
+                                        <th class="text-center" id="th">Nama Karyawan</th>
                                         <th>Umur</th>
-                                        <th>Total Absensi</th>
+                                        <th id="th">Total Absensi</th>
                                         <th class="text-center">Alamat</th>
-                                        <th class="text-center">Nomor Hp</th>
-                                        <th class="text-center">Opsi</th>
+                                        <th class="text-center" id="th">Nomor Hp</th>
+                                        <th class="text-center" id="th">Opsi</th>
                                     </tr>
                                 </thead>
                             </table>

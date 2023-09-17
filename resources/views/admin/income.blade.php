@@ -17,6 +17,10 @@
         }
 
     }
+    #th{
+        background-color: #393E46;
+        color: #EEEEEE
+    }
 </style>
 <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -25,14 +29,16 @@
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-md-12">
-                    <h1>Tabel Income</h1>
+                    <div class="bg-judul p-2" style="width: 51%">
+                        <h1 class="ms-2">Incomes</h1>
+                    </div>
                 </div>
                 <div class="col-xl-8 col-lg-8 col-md-12">
 
 
                 </div>
             </div><hr>
-            <div class="contaiener mt-5">
+            <div class="contaiener mt-3">
                 <div class="row">
                     <div class="col-lg-7">
                         <div class="border border-4 rounded-2">
@@ -132,11 +138,11 @@
                                     <thead>
                                         <tr>
                                             <th>id</th>
-                                            <th class="text-center">No.</th>
-                                            <th>Uang Kotor</th>
-                                            <th>Gaji Karyawan</th>
-                                            <th class="text-center">Uang Bersih</th>
-                                            <th class="text-right">Tanggal</th>
+                                            <th class="text-center" id="th">No.</th>
+                                            <th id="th">Uang Kotor</th>
+                                            <th id="th" >Gaji Karyawan</th>
+                                            <th class="text-center" id="th">Uang Bersih</th>
+                                            <th class="text-right" id="th">Tanggal</th>
                                         </tr>
                                     </thead>
                                 </table>
