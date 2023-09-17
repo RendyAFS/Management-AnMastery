@@ -2,17 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 
-class KaryawanController extends Controller
+class KaryawanAbsensiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pageTitle = "Karyawan";
-        return view('user.index', compact('pageTitle'));
+        $pageTitle = 'Absensi';
+        return view('user.karyawanabsensi' , compact('pageTitle'));
+    }
+
+    public function getData(Request $request)
+    {
+        $employees = Employee::all();
+
+        if ($request->ajax()) {
+            return datatables()->of($employees)
+                ->addIndexColumn()
+                ->toJson();
+        }
     }
 
     /**

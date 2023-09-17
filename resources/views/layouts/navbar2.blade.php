@@ -86,7 +86,7 @@
                 <a class="dropdown-item" style="color: #FFFFFF;" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
-                   <i class="bi bi-box-arrow-left fs-5 me-2"></i> LOGOUT
+                   <i class="bi bi-box-arrow-left fs-5 me-2"></i> Logout
                 </a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

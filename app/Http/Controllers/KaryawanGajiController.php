@@ -2,17 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
+use App\Models\Fabric;
+use App\Models\Payment;
+use App\Models\PriceEmployee;
 use Illuminate\Http\Request;
 
-class KaryawanController extends Controller
+class KaryawanGajiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pageTitle = "Karyawan";
-        return view('user.index', compact('pageTitle'));
+        $pageTitle = 'Gaji';
+        $fabrics = Fabric::onlyTrashed()->orderBy('suppliers_id', 'desc')->get();
+        $employees = Employee::all();
+        $gajis = PriceEmployee::all();
+        $payments = Payment::all();
+        return view('user.karyawangaji' ,
+        compact(
+            'pageTitle',
+            'employees',
+            'gajis',
+            'fabrics',
+            'payments',
+        ));
+    }
+    public function getData(Request $request)
+    {
+        $gaji = Payment::all();
+
+        if ($request->ajax()) {
+            return datatables()->of($gaji)
+                ->addIndexColumn()
+                ->toJson();
+        }
     }
 
     /**

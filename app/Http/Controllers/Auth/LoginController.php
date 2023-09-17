@@ -55,7 +55,7 @@ class LoginController extends Controller
             if ($user->level === 'admin') {
                 return redirect()->route('dashboards.index');
             } elseif ($user->level === 'user') {
-                return redirect()->route('user');
+                return redirect()->route('karyawans.index');
             }
         }
 
