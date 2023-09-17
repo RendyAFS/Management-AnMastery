@@ -134,10 +134,14 @@ class SupplierController extends Controller
         $supplier = Supplier::find($id);
 
 
-        // Alert::success('Deleted Successfully', 'Supplier Data Deleted.');
+        if ($supplier->delete()) {
+            $message = "Supplier berhasil dihapus.";
+            Alert::success('Berhasil Menghapus', $message);
+        } else {
+            Alert::error('Gagal Menghapus', 'Terjadi kesalahan saat menghapus supplier.');
+            return redirect()->route('suppliers.index');
+        }
 
-        $supplier->delete();
         return redirect()->route('suppliers.index');
     }
-
 }
