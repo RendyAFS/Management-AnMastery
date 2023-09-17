@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class SesiController extends Controller
 {
     public function index(){{
-        return view('welcome');
+        return view('auth.login');
     }}
 
     // public function indexadmin(){{

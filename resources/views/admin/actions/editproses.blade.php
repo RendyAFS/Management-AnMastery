@@ -23,7 +23,9 @@
         background-color: #00ADB5;
         color: #EEEEEE
     }
-
+    label{
+        font-weight: bold;
+    }
 </style>
 <div class="container animatedC">
     <div class="row">
