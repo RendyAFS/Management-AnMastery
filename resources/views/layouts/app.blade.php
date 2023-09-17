@@ -16,12 +16,54 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
+<style>
+    .nav-link{
+        color:#EEEEEE;
+    }
+    body{
+        background-color: #EEEEEE
+    }
+    .btn-primary{
+            background-color: #187498;
+            border: none;
+        }
+        .btn-primary:hover{
+            background-color: #1d3b6a;
+            border: none;
+        }
+        .btn-success{
+            background-color: #36AE7C;
+            border: none;
+        }
+        .btn-success:hover{
+            background-color: #277b58;
+            border: none;
+        }
+        .btn-danger{
+            background-color: #EB5353;
+            border: none;
+        }
+        .btn-danger:hover{
+            background-color: #6e1717;
+            border: none;
+        }
+        .btn-warning{
+            background-color: #F9D923;
+            border: none;
+        }
+        .btn-warning:hover{
+            background-color: #7b6e24;
+            border: none;
+            color: white
+        }
+</style>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+        <nav class="navbar navbar-expand-md shadow-lg"
+        style="background-color:#393E46; ">
+            <div class="container" >
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    <img src="{{asset('storage/logo/logoOnly2.png')}}" alt="" style="width: 120px">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

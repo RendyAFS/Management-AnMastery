@@ -10,6 +10,10 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\OnprosesController;
 use App\Http\Controllers\GajiController;
 use App\Http\Controllers\GambarKainController;
+use App\Http\Controllers\KaryawanAbsensiController;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\KaryawanGajiController;
+use App\Http\Controllers\KaryawanOnprosesController;
 use App\Models\Supplier;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -78,5 +82,19 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
 
 // HALAMAN USER
 Route::prefix('user')->middleware(['auth', 'user'])->group(function(){
-    Route::get('/dashboard', [SesiController::class, 'indexuser'])->name('user');
+    Route::resource('karyawans', KaryawanController::class);
+
+
+    Route::resource('absensikaryawans', KaryawanAbsensiController::class);
+    Route::get('getkaryawansabsensi', [KaryawanAbsensiController::class,'getData'])->name('karyawansabsensi.getData');
+
+
+
+    Route::resource('onproseskaryawans', KaryawanOnprosesController::class);
+
+
+    Route::resource('gajikaryawans', KaryawanGajiController::class);
+    Route::get('getkaryawansgaji', [KaryawanGajiController::class,'getData'])->name('karyawansgaji.getData');
+
+
 });

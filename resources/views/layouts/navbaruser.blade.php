@@ -16,7 +16,8 @@
         color: #00ADB5
     }
     .nav-link {
-        color: #EEEEEE
+        color: #EEEEEE;
+
     }
     .nav-link:hover {
         color: #71757c
@@ -24,6 +25,7 @@
     .nav-link:focus {
         color: #EEEEEE
     }
+
 </style>
 
 
@@ -35,42 +37,31 @@
         {{-- NAV ITEM --}}
         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
             <li class="nav-item">
-                <a href="{{ route('dashboards.index') }}" class="nav-link align-middle px-0">
+                <a href="{{ route('karyawans.index') }}" class="nav-link align-middle px-0">
                     <i class="fs-4 bi bi-house-fill bi-nav"></i> <span class="ms-1 d-none d-sm-inline"></span>Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('suppliers.index') }}" class="nav-link px-0 align-middle">
-                    <i class="fs-4 bi bi-dropbox bi-nav"></i> <span class="ms-1 d-none d-sm-inline"></span>Supplier
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#submenu2" data-bs-toggle="collapse" class="nav-link px-0 align-middle " >
                     <i class="fs-4 bi bi-person-fill bi-nav"></i> <span class="ms-1 d-none d-sm-inline"></span>Karyawan <i class="bi-caret-down-fill align-middle bi-nav"></i>
                 </a>
-                <ul class="collapse nav flex-column ms-1 " id="submenu2" data-bs-parent="#menu">
+                <ul class="collapse nav flex-column ms-1 show" id="submenu2" data-bs-parent="#menu">
                     <li class="w-100">
-                        <a href="{{ route('absensis.index') }}" class="nav-link px-0 ps-2">
+                        <a href="{{ route('absensikaryawans.index') }}" class="nav-link px-0 ps-2">
                             <span class="d-none d-sm-inline submenu-toggle"><i class="bi bi-caret-right bi-nav"></i> </span> Absensi
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('onproses.index') }}" class="nav-link px-0 ps-2">
+                        <a href="{{ route('onproseskaryawans.index') }}" class="nav-link px-0 ps-2">
                             <span class="d-none d-sm-inline submenu-toggle"><i class="bi bi-caret-right bi-nav"></i> </span> Onproses
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('gajis.index') }}" class="nav-link px-0 ps-2">
+                        <a href="{{ route('gajikaryawans.index') }}" class="nav-link px-0 ps-2">
                             <span class="d-none d-sm-inline submenu-toggle"><i class="bi bi-caret-right bi-nav"></i> </span> Gaji
                         </a>
                     </li>
-
                 </ul>
-            </li>
-
-            <li class="nav-item">
-                <a href="{{ route('incomes.index') }}" class="nav-link px-0 align-middle">
-                    <i class="fs-4 bi bi-cash-coin bi-nav"></i> <span class="ms-1 d-none d-sm-inline"></span>Incomes</a>
             </li>
         </ul>
         {{-- NAV ITEM --}}
