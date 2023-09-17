@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Charts\IncomesDashboardChart;
 use App\Charts\JumlahKainChart;
 use App\Models\Employee;
+use App\Models\Fabric;
 use App\Models\PictureFabric;
 use Illuminate\Http\Request;
 
@@ -20,8 +21,9 @@ class DashboardController extends Controller
         $pageTitle = 'Dashboard';
         $pics = PictureFabric::all();
         $employees = Employee::all();
+        $fabrics = Fabric::all();
         return view('admin.dashboard',
-        compact('pageTitle', 'pics', 'employees'),
+        compact('pageTitle', 'pics', 'employees', 'fabrics'),
         [
             'chartkain' => $chartkain->build(),
             'chartincome' => $chartincome->build()

@@ -16,6 +16,20 @@
             transform: scale(1);
         }
     }
+    .animasi {
+        animation: fadeAnimation 1s ease-in-out ; /* Delay selama 1 detik sebelum animasi dimulai */
+    }
+
+    @keyframes fadeAnimation {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+
+
 </style>
 <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -87,7 +101,10 @@
                             </table>
                         </div>
                     </div>
-                    <div class="col-lg-12 mt-5">
+
+
+
+                    <div class="col-lg-12 mt-5 animasi">
                         <hr id="gambar_kain"><br>
                         <div class="row mt-3 mb-4">
                             <div class="col-lg-4">
