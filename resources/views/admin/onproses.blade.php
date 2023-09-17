@@ -42,6 +42,10 @@
             transform: scale(1);
         }
     }
+    #th{
+        background-color: #393E46;
+        color: #EEEEEE
+    }
 
 </style>
 <div class="container-fluid">
@@ -50,14 +54,14 @@
 
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
             <div class="row">
-                <div class="col-xl-4 col-lg-4 col-md-12">
-                    <h1>
-                        Tabel On Proses
-                    </h1>
+                <div class="col-xl-6 col-lg-6 col-md-12">
+                    <div class="bg-judul p-2" style="width: 55%">
+                        <h1 class="ms-2">Tabel OnProses</h1>
+                    </div>
                 </div>
 
 
-                <div class="col-xl-8 col-lg-8 col-md-12" >
+                <div class="col-xl-6 col-lg-6 col-md-12" >
                     <div class="d-flex justify-content-end">
 
                         <a href="SelesaiSemua" class="btn btn-warning d-flex align-items-center me-3 shadow" data-bs-toggle="modal" data-bs-target="#selesaiSemua">
@@ -132,7 +136,7 @@
             <div class="row mt-4">
                 <div class="col-lg-4" >
                     <div class="card shadow">
-                        <div class="card-header">
+                        <div class="card-header" id="th">
                             <h3 class="modal-title">Sisa Kain</h3>
                         </div>
                         <div class="card-body">

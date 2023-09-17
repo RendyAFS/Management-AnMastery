@@ -54,7 +54,10 @@
         }
 
     }
-
+    #th{
+        background-color: #393E46;
+        color: #EEEEEE
+    }
 
 </style>
 
@@ -66,9 +69,9 @@
         <div class="col offset-xl-2 col offset-lg-3 offset-md-3 offset-sm-3 offset-4 col-md-9 col-xl-10 py-3">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12">
-                    <h1>
-                        Gaji Karyawan
-                    </h1>
+                    <div class="bg-judul p-2" style="width: 51%">
+                        <h1 class="ms-2">Gaji Karyawan</h1>
+                    </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-12">
                     <div class="d-flex justify-content-end">
@@ -146,10 +149,10 @@
                             <thead>
                                 <tr>
                                     <th>id</th>
-                                    <th class="text-center">No.</th>
-                                    <th class="text-center" style="width: 200px">Nama Karyawan</th>
-                                    <th >Deskripsi</th>
-                                    <th class="text-center" style="width: 200px">Total Gaji</th>
+                                    <th class="text-center" id="th">No.</th>
+                                    <th class="text-center" id="th" style="width: 200px">Nama Karyawan</th>
+                                    <th id="th" >Deskripsi</th>
+                                    <th class="text-center" id="th" style="width: 200px">Total Gaji</th>
                                 </tr>
                             </thead>
                         </table>

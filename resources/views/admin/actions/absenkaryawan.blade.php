@@ -32,6 +32,15 @@
             opacity: 1;
         }
     }
+    .card-header
+    {
+        background-color: #393E46;
+        color: #EEEEEE
+    }
+    #th{
+        background-color: #00ADB5;
+        color: #EEEEEE
+    }
 
 </style>
 <div class="container animatedC mt-3">
@@ -171,15 +180,15 @@
                             <input type="hidden" name="nohp" value="{{ old('nohp', $employee->nohp) }}" required>
                             {{-- HIDDEN --}}
                             <!-- Table for Checkbox Inputs -->
-                            <table class="table table-bordered mt-2">
+                            <table class="table table-bordered mt-2 border border-3">
                                 <thead>
                                     <tr>
-                                        <th>Senin</th>
-                                        <th>Selasa</th>
-                                        <th>Rabu</th>
-                                        <th>Kamis</th>
-                                        <th>Jumat</th>
-                                        <th>Sabtu</th>
+                                        <th id="th">Senin</th>
+                                        <th id="th">Selasa</th>
+                                        <th id="th">Rabu</th>
+                                        <th id="th">Kamis</th>
+                                        <th id="th">Jumat</th>
+                                        <th id="th">Sabtu</th>
                                     </tr>
                                 </thead>
                                 <tbody>

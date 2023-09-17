@@ -1,4 +1,3 @@
-@include('layouts.appadmin')
 
 <form action="{{ route('Gkains.store') }}" method="POST" enctype="multipart/form-data">
     @csrf <!-- CSRF token -->
