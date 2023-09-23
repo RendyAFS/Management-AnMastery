@@ -123,8 +123,8 @@
                     { data: "actions", name: "actions", orderable: false, searchable: false, width: "5%" },
                 ],
                 lengthMenu: [
-                    [25, 50, 100, -1],
-                    [25, 50, 100, "All"],
+                    [10, 50, 100, -1],
+                    [10, 50, 100, "All"],
                 ],
             });
 
