@@ -170,7 +170,9 @@
                                                 Edit
                                             </a>
                                             <a href="DeleteGambar" type="button" class="btn btn-danger shadow"
-                                                data-bs-toggle="modal" data-bs-target="#delgambar">Hapus</a>
+                                                data-bs-toggle="modal" data-bs-target="#delgambar">
+                                                Hapus
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach

@@ -86,7 +86,7 @@ class GambarKainController extends Controller
      */
     public function edit(string $id)
     {
-        $pic = PictureFabric::find($id);
+        $pic = PictureFabric:: find($id);
         return view('admin.actions.editgambar', compact('pic'));
     }
 
