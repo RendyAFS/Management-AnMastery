@@ -164,6 +164,8 @@
                                             <h5 class="card-title">
                                                 {{ $pic->gambar_kain }}
                                             </h5>
+                                        </div>
+                                        <div class="card-footer bg-white">
                                             <a href="EditGambar" class="btn btn-primary editg-btn shadow"
                                                 data-bs-toggle="modal" data-bs-target="#editgambar"
                                                 data-id="{{ $pic->id }}">

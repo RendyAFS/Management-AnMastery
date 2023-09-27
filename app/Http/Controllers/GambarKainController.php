@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PictureFabric;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -53,7 +54,7 @@ class GambarKainController extends Controller
             $pic = $file->getClientOriginalName();
 
             // Simpan file dengan nama asli
-            $file->storeAs('public/gambar_kain', $pic);
+            $file->move('storage/gambar_kain', $pic);
         }
 
         $pictures = new PictureFabric;
@@ -120,11 +121,11 @@ class GambarKainController extends Controller
             $pic = $file->getClientOriginalName();
 
             // Simpan file dengan nama asli
-            $file->storeAs('public/gambar_kain', $pic);
+            $file->move('storage/gambar_kain', $pic);
 
             // Hapus file lama jika ada
             if ($pictures->pic != null) {
-                Storage::delete('public/gambar_kain/' . $pictures->pic);
+                File::delete('storage/gambar_kain/' . $pictures->pic);
             }
 
             // Update kolom 'pic' dengan nama file baru
@@ -156,7 +157,7 @@ class GambarKainController extends Controller
         if ($pic) {
             // Hapus file terkait jika ada
             if ($pic->pic != null) {
-                Storage::delete('public/gambar_kain/' . $pic->pic);
+                File::delete('storage/gambar_kain/' . $pic->pic);
             }
 
             // Hapus entri dari database
